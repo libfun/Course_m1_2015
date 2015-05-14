@@ -66,72 +66,104 @@ We'll first describe all indices used for the prediction of links and then compa
 \subsubsection{Common neighbours (CN)}
 %
 This is the easiest and most obvious approach to the idea of capturing the similarity of two nodes in the network. As such, a number of indices described below will use this measure with different weights. So if we denote $\Gamma(x)$ the number of neighbours of node $x$ in the graph, the formula looks like
-$$s_{xy}^{CN} = |\Gamma(x) \cap \Gamma(y)|,$$
+\begin{equation}
+s_{xy}^{CN} = |\Gamma(x) \cap \Gamma(y)|,
+\end{equation}
 where $s_{xy}$ is the index.
 %
 \subsubsection{Salton Index (SaI)}
 %
 This index is also called cosine similarity and is defined as
-$$s_{xy}^{Salton} = \frac{|\Gamma(x) \cap \Gamma(y)|}{\sqrt{k_x \times k_x}},$$
+\begin{equation}
+s_{xy}^{Salton} = \frac{|\Gamma(x) \cap \Gamma(y)|}{\sqrt{k_x \times k_x}},
+\end{equation}
 where $k_x$ is the degree of node $x$.
 %
 \subsubsection{Jaccard Index (JI)}
 %
-$$s_{xy}^{Jaccard} = \frac{|\Gamma(x) \cap \Gamma(y)|}{|\Gamma(x) \cup \Gamma(y)|}.$$
+\begin{equation}
+s_{xy}^{Jaccard} = \frac{|\Gamma(x) \cap \Gamma(y)|}{|\Gamma(x) \cup \Gamma(y)|}.
+\end{equation}
 %
 \subsubsection{S{\o}rensen Index (SoI)}
 %
-$$s_{xy}^{S{\o}rensen} = \frac{2|\Gamma(x) \cap \Gamma(y)|}{k_x + k_y}.$$
+\begin{equation}
+s_{xy}^{S{\o}rensen} = \frac{2|\Gamma(x) \cap \Gamma(y)|}{k_x + k_y}.
+\end{equation}
 %
 \subsubsection{Hub Promoted Index (HPI)}
 %
-$$s_{xy}^{HPI} = \frac{|\Gamma(x) \cap \Gamma(y)|}{min\{k_x, k_y\}}.$$
+\begin{equation}
+s_{xy}^{HPI} = \frac{|\Gamma(x) \cap \Gamma(y)|}{min\{k_x, k_y\}}.
+\end{equation}
 %
 \subsubsection{Hub Depressed Index (HDI)}
 %
-$$s_{xy}^{HDI} = \frac{|\Gamma(x) \cap \Gamma(y)|}{max\{k_x, k_y\}}.$$
+\begin{equation}
+s_{xy}^{HDI} = \frac{|\Gamma(x) \cap \Gamma(y)|}{max\{k_x, k_y\}}.
+\end{equation}
 %
 \subsubsection{Leicht–Holme–Newman Index (LHN1)}
 %
-$$s_{xy}^{LHN1} = \frac{|\Gamma(x) \cap \Gamma(y)|}{k_x \times k_y}.$$
+\begin{equation}
+s_{xy}^{LHN1} = \frac{|\Gamma(x) \cap \Gamma(y)|}{k_x \times k_y}.
+\end{equation}
 %
 \subsubsection{Preferential Attachment Index (PAI)}
 %
-$$s_{xy}^{PA} = k_x \times k_y.$$
+\begin{equation}
+s_{xy}^{PA} = k_x \times k_y.
+\end{equation}
 %
 \subsubsection{Adamic–Adar Index (AAI)}
 %
-$$s_{xy}^{AA} = \sum_{z \in \Gamma(x) \cap \Gamma(y)} \frac{1}{log k_z}.$$
+\begin{equation}
+s_{xy}^{AA} = \sum_{z \in \Gamma(x) \cap \Gamma(y)} \frac{1}{log k_z}.
+\end{equation}
 %
 \subsubsection{Resource Allocation Index (RAI)}
 %
-$$s_{xy}^{RA} = \sum_{z \in \Gamma(x) \cap \Gamma(y)} \frac{1}{k_z}.$$
+\begin{equation}
+s_{xy}^{RA} = \sum_{z \in \Gamma(x) \cap \Gamma(y)} \frac{1}{k_z}.
+\end{equation}
 %
 \subsection{Global Similarity Indices}
 %
 \subsubsection{Katz Index (KI)}
 %
-$$S^{Katz} = (I - \beta A)^{-1} - I.$$
+\begin{equation}
+S^{Katz} = (I - \beta A)^{-1} - I.
+\end{equation}
 %
 \subsubsection{Leicht–Holme–Newman Index (LHN2)}
 %
-$$S^{LHN2} = 2 m \lambda_1 D^{-1} (I - \frac{\phi A}{\lambda_1})^{-1} D^{-1}.$$
+\begin{equation}
+S^{LHN2} = 2 m \lambda_1 D^{-1} (I - \frac{\phi A}{\lambda_1})^{-1} D^{-1}.
+\end{equation}
 %
 \subsubsection{Average Commute Time (ACT)}
 %
-$$S_{xy}^{ACT} = \frac{1}{l_{xx}^{+} + l_{yy}^{+} - 2l_{xy}^{+}}.$$
+\begin{equation}
+S_{xy}^{ACT} = \frac{1}{l_{xx}^{+} + l_{yy}^{+} - 2l_{xy}^{+}}.
+\end{equation}
 %
 \subsubsection{Cosine based on $L^+$ (CBL)}
 %
-$$s_{xy}^{cos^{+}} = cos(x, y)^{+} = \frac{v_x^T v_y}{|v_x| \cdot |v_y|} = \frac{l_{xy}^{+}}{\sqrt{l_{xx}^{+}\cdot l_{yy}^{+}}}.$$
+\begin{equation}
+s_{xy}^{cos^{+}} = cos(x, y)^{+} = \frac{v_x^T v_y}{|v_x| \cdot |v_y|} = \frac{l_{xy}^{+}}{\sqrt{l_{xx}^{+}\cdot l_{yy}^{+}}}.
+\end{equation}
 %
 \subsubsection{Random Walk with Restart (RWR)}
 %
-$$s_{xy}^{RWR} = q_{xy} + q_{yx}.$$
+\begin{equation}
+s_{xy}^{RWR} = q_{xy} + q_{yx}.
+\end{equation}
 %
 \subsubsection{Matrix Forest Index (MFI)}
 %
-$$S = (I + L)^{-1}.$$
+\begin{equation}
+S = (I + L)^{-1}.
+\end{equation}
 %
 \setlength{\tabcolsep}{5pt}
 \renewcommand{\arraystretch}{1.5}

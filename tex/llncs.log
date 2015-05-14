@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.10.15)  14 MAY 2015 20:37
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.10.15)  14 MAY 2015 20:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -150,7 +150,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 
 {/usr/local/texlive/2013/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 
-LaTeX Warning: Command \o invalid in math mode on input line 84.
+LaTeX Warning: Command \o invalid in math mode on input line 91.
 
 Missing character: There is no â in font cmbx10!
 Missing character: There is no € in font cmbx10!
@@ -169,60 +169,60 @@ Missing character: There is no â in font cmbx10!
 Missing character: There is no € in font cmbx10!
 Missing character: There is no “ in font cmbx10!
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <9> on input line 141.
+(Font)              <9> on input line 173.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 141.
+(Font)              <6> on input line 173.
 
-Overfull \hbox (0.99196pt too wide) in paragraph at lines 141--154
+Overfull \hbox (0.99196pt too wide) in paragraph at lines 173--186
  [] 
  []
 
 [3] [4]
-Overfull \hbox (5.02252pt too wide) in paragraph at lines 193--206
+Overfull \hbox (5.02252pt too wide) in paragraph at lines 225--238
  [] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 211--559
+Underfull \hbox (badness 10000) in paragraph at lines 243--591
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 211--559
+Underfull \hbox (badness 10000) in paragraph at lines 243--591
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 211--559
+Underfull \hbox (badness 10000) in paragraph at lines 243--591
 
  []
 
 [5]
-Underfull \hbox (badness 7944) in paragraph at lines 595--596
+Underfull \hbox (badness 7944) in paragraph at lines 627--628
 []\OT1/cmr/m/n/9 M. E. J. New-man, Phys. Rev. E 74, 036104 (2006). Avail-able a
 t:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 607--608
+Underfull \hbox (badness 10000) in paragraph at lines 639--640
 []\OT1/cmr/m/n/9 D. E. Knuth, The Stan-ford Graph-Base: A Plat-form for Com-bi-
 na-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 607--608
+Underfull \hbox (badness 10000) in paragraph at lines 639--640
 \OT1/cmr/m/n/9 to-rial Com-put-ing, Addison-Wesley, Read-ing, MA (1993). Avail-
 able at:
  []
 
 
-Overfull \hbox (7.4015pt too wide) in paragraph at lines 610--611
+Overfull \hbox (7.4015pt too wide) in paragraph at lines 642--643
 []\OT1/cmr/m/n/9 V. Krebs, Datasets. Avail-able at: \OT1/cmtt/m/n/9 http://www-
 personal.umich.edu/~mejn/netdata/\OT1/cmr/m/n/9 . 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 616--617
+Underfull \hbox (badness 10000) in paragraph at lines 648--649
 []\OT1/cmr/m/n/9 V. Batageli, A. Mr-var, Pa-jek datasets. Avail-able at:
  []
 
@@ -252,7 +252,7 @@ sr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr
 /local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/l
 ocal/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/loc
 al/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
-Output written on llncs.pdf (6 pages, 206834 bytes).
+Output written on llncs.pdf (6 pages, 208108 bytes).
 PDF statistics:
  91 PDF objects out of 1000 (max. 8388607)
  65 compressed objects within 1 object stream
