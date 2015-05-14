@@ -4,7 +4,6 @@
 % version 2.4 for LaTeX2e as of 16. April 2010
 %
 \documentclass{llncs}
-\usepackage{hyperref}
 % % % % % % % % % % % % % % % % % % % %
 % For Russian uncomment the following lines
 % \usepackage[utf8x]{inputenc}
@@ -141,7 +140,7 @@ $$S = (I + L)^{-1}.$$
 \caption{AUCs of local indices. AN - Word adjacencies network\cite{adjnoun-net}, CN - Neural network\cite{celneur-net}, Dp - Dolphin social network network\cite{dolph-net}, FB - American College football network\cite{foot-net}, LM - Les Miserables network\cite{lesmis-net}, PB - Books about US politics network\cite{polbook-net}, KC - Zachary's karate club network\cite{karate-net}, UA - US air transportation system network\cite{usair-net}. Best results for given network in bold.}
 \begin{tabular}{| l | l | l | l | l | l | l | l | l | l | l |}
 \hline
-& CN & SaI & JI & SoI & HPI & HDI & LHN1 & PAI & AAI & RAI \\ \hline
+Net & CN & SaI & JI & SoI & HPI & HDI & LHN1 & PAI & AAI & RAI \\ \hline
 AN & 0.662 & 0.606 & 0.603 & 0.603 & 0.618 & 0.603 & 0.566 & \textbf{0.744} & 0.662 & 0.659 \\ \hline
 CN & 0.844 & 0.797 & 0.790 & 0.790 & 0.805 & 0.779 & 0.725 & 0.750 & 0.861 & \textbf{0.866} \\ \hline
 Dp & 0.779 & 0.774 & 0.779 & 0.779 & 0.763 & 0.780 & 0.762 & 0.619 & \textbf{0.781} & \textbf{0.781} \\ \hline
@@ -162,7 +161,7 @@ UA & 0.934 & 0.908 & 0.897 & 0.897 & 0.869 & 0.891 & 0.767 & 0.885 & 0.945 & \te
 \caption{AUCs of global indices.}
 \begin{tabular}{| l | l | l | l | l | l | l |}
 \hline
-& KI & LHN2 & ACT & CBL & RWR & MFI \\ \hline
+Net & KI & LHN2 & ACT & CBL & RWR & MFI \\ \hline
 AN & 0.714 & 0.549 & \textbf{0.742} & 0.586 & 0.738 & 0.667 \\ \hline
 CN & 0.852 & 0.717 & 0.738 & 0.848 & 0.725 & \textbf{0.865} \\ \hline
 Dp & 0.799 & \textbf{0.825} & 0.760 & 0.791 & 0.649 & 0.804 \\ \hline
@@ -193,7 +192,7 @@ After $n$ steps of the above process we get the trainig dataset of size $2 |E_i|
 \caption{Scores of the algorithm performance on the class 1 of marked links.}
 \begin{tabular}{| l | l | l | l | l | l |}
 \hline
-& F1 & Precision & Recall & ROCAUC & Accuracy  \\ \hline
+Net & F1 & Precision & Recall & ROCAUC & Accuracy  \\ \hline
 AN & 0.027 $\pm$ 0.003 & 0.014 $\pm$ 0.002 & 0.579 $\pm$ 0.072 & 0.638 $\pm$ 0.032 & 0.696 $\pm$ 0.023  \\ \hline
 CN & 0.041 $\pm$ 0.001 & 0.021 $\pm$ 0.000 & 0.811 $\pm$ 0.018 & 0.809 $\pm$ 0.008 & 0.808 $\pm$ 0.004  \\ \hline
 Dp & 0.049 $\pm$ 0.008 & 0.025 $\pm$ 0.005 & 0.635 $\pm$ 0.082 & 0.704 $\pm$ 0.040 & 0.771 $\pm$ 0.035  \\ \hline
@@ -593,28 +592,28 @@ Proposed approach of supervised learning for link prediction showed interesting 
 %Comm. Pure Appl. Math. 33, 609--633 (1980) 
 
 \bibitem {adjnoun-net}
-M. E. J. Newman, Phys. Rev. E 74, 036104 (2006). Available at: \url{http://www-personal.umich.edu/~mejn/netdata/}.
+M. E. J. Newman, Phys. Rev. E 74, 036104 (2006). Available at: \texttt{http://www-personal.umich.edu/\~{}mejn/netdata/}.
 
 \bibitem {celneur-net}
-D. J. Watts and S. H. Strogatz, Nature 393, 440-442 (1998). Available at: \url{http://www-personal.umich.edu/~mejn/netdata/}.
+D. J. Watts and S. H. Strogatz, Nature 393, 440-442 (1998). Available at: \texttt{http://www-personal.umich.edu/\~{}mejn/netdata/}.
 
 \bibitem {dolph-net}
-D. Lusseau, K. Schneider, O. J. Boisseau, P. Haase, E. Slooten, and S. M. Dawson, Behavioral Ecology and Sociobiology 54, 396-405 (2003). Available at: \url{http://www-personal.umich.edu/~mejn/netdata/}.
+D. Lusseau, K. Schneider, O. J. Boisseau, P. Haase, E. Slooten, and S. M. Dawson, Behavioral Ecology and Sociobiology 54, 396-405 (2003). Available at: \texttt{http://www-personal.umich.edu/\~{}mejn/netdata/}.
 
 \bibitem {foot-net}
-M. Girvan and M. E. J. Newman, Proc. Natl. Acad. Sci. USA 99, 7821-7826 (2002). Available at: \url{http://www-personal.umich.edu/~mejn/netdata/}.
+M. Girvan and M. E. J. Newman, Proc. Natl. Acad. Sci. USA 99, 7821-7826 (2002). Available at: \texttt{http://www-personal.umich.edu/\~{}mejn/netdata/}.
 
 \bibitem {lesmis-net}
-D. E. Knuth, The Stanford GraphBase: A Platform for Combinatorial Computing, Addison-Wesley, Reading, MA (1993). Available at: \url{http://www-personal.umich.edu/~mejn/netdata/}.
+D. E. Knuth, The Stanford GraphBase: A Platform for Combinatorial Computing, Addison-Wesley, Reading, MA (1993). Available at: \texttt{http://www-personal.umich.edu/\~{}mejn/netdata/}.
 
 \bibitem {polbook-net}
-V. Krebs, Datasets. Available at: \url{http://www-personal.umich.edu/~mejn/netdata/}.
+V. Krebs, Datasets. Available at: \texttt{http://www-personal.umich.edu/\~{}mejn/netdata/}.
 
 \bibitem {karate-net}
-W. W. Zachary, An information flow model for conflict and fission in small groups, Journal of Anthropological Research 33, 452-473 (1977). Available at: \url{http://www-personal.umich.edu/~mejn/netdata/}.
+W. W. Zachary, An information flow model for conflict and fission in small groups, Journal of Anthropological Research 33, 452-473 (1977). Available at: \texttt{http://www-personal.umich.edu/\~{}mejn/netdata/}.
 
 \bibitem {usair-net}
-V. Batageli, A. Mrvar, Pajek datasets. Available at: \url{http://vlado.fmf.uni-lj.si/pub/networks/data/default.htm}.
+V. Batageli, A. Mrvar, Pajek datasets. Available at: \texttt{http://vlado.fmf.uni-lj.si/pub/networks/data/default.htm}.
 
 \end{thebibliography}
 
