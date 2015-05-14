@@ -61,7 +61,7 @@ The main tool for measuring the accuracy of ranking is AUC score, which can be d
 
 We'll first describe all indices used for the prediction of links and then compare their AUC scores on different networks.
 %
-\subsection{Local Indices}
+\subsection{Local Similarity Indices}
 %
 \subsubsection{Common neighbours (CN)}
 %
@@ -133,42 +133,27 @@ $$s_{xy}^{RWR} = q_{xy} + q_{yx}.$$
 %
 $$S = (I + L)^{-1}.$$
 %
-%\begin{center}
-%\begin{tabular}{| l | l | l | l | l | l | l | l | l | l | l |}
-%\hline
-%& CN & SaI & JI & SoI & HPI & HDI & LHN1 & PAI & AAI & RAI \\ \hline
-%adjnoun & 0.662143 & 0.605849 & 0.603443 & 0.603443 & 0.618401 & 0.602827 & 0.565677 & 0.743843 & 0.661637 & 0.659071 \\ \hline
-%celegansneural & 0.843985 & 0.797159 & 0.789971 & 0.789971 & 0.804574 & 0.779009 & 0.725389 & 0.750079 & 0.861112 & 0.866068 \\ \hline
-%dolphins & 0.779455 & 0.774381 & 0.778577 & 0.778577 & 0.763214 & 0.780667 & 0.762055 & 0.619125 & 0.781451 & 0.780727 \\ \hline
-%football & 0.845945 & 0.857528 & 0.857887 & 0.857887 & 0.855511 & 0.857384 & 0.859482 & 0.269802 & 0.845795 & 0.845755 \\ \hline
-%lesmis & 0.910810 & 0.882181 & 0.879710 & 0.879710 & 0.847450 & 0.878189 & 0.820271 & 0.776403 & 0.918360 & 0.918733 \\ \hline
-%polbooks & 0.887208 & 0.884445 & 0.875319 & 0.875319 & 0.894284 & 0.863075 & 0.847957 & 0.653248 & 0.897115 & 0.899760 \\ \hline
-%karate club & 0.699908 & 0.636143 & 0.606829 & 0.606829 & 0.712276 & 0.592641 & 0.599922 & 0.711626 & 0.725595 & 0.733396 \\ \hline
-%usair & 0.934056 & 0.907940 & 0.897406 & 0.897406 & 0.869254 & 0.890794 & 0.766953 & 0.885312 & 0.945331 & 0.951237 \\ 
-%\hline
-%\end{tabular}
-%\end{center}
 \setlength{\tabcolsep}{5pt}
 \renewcommand{\arraystretch}{1.5}
 \begin{table}
 \begin{center}
-\caption{AUCs of local indices. AN - AdjNoun network, CN - CelegansNeural network, Dp - Dolphins network, FB - Football network, LM - LesMiserables network, PB - PolBooks network, KC - Karate club network, UA - USAir network}
+\caption{AUCs of local indices. AN - Word adjacencies network\cite{adjnoun-net}, CN - Neural network\cite{celneur-net}, Dp - Dolphin social network network\cite{dolph-net}, FB - American College football network\cite{foot-net}, LM - Les Miserables network\cite{lesmis-net}, PB - Books about US politics network\cite{polbook-net}, KC - Zachary's karate club network\cite{karate-net}, UA - US air transportation system network\cite{usair-net}. Best results for given network in bold.}
 \begin{tabular}{| l | l | l | l | l | l | l | l | l | l | l |}
 \hline
 & CN & SaI & JI & SoI & HPI & HDI & LHN1 & PAI & AAI & RAI \\ \hline
-AN & 0.662 & 0.606 & 0.603 & 0.603 & 0.618 & 0.603 & 0.566 & 0.744 & 0.662 & 0.659 \\ \hline
-CN & 0.844 & 0.797 & 0.790 & 0.790 & 0.805 & 0.779 & 0.725 & 0.750 & 0.861 & 0.866 \\ \hline
-Dp & 0.779 & 0.774 & 0.779 & 0.779 & 0.763 & 0.780 & 0.762 & 0.619 & 0.781 & 0.781 \\ \hline
-FB & 0.846 & 0.856 & 0.858 & 0.858 & 0.856 & 0.857 & 0.859 & 0.270 & 0.846 & 0.846 \\ \hline
-LM & 0.910 & 0.882 & 0.880 & 0.880 & 0.847 & 0.878 & 0.820 & 0.776 & 0.918 & 0.919 \\ \hline
-PB & 0.887 & 0.884 & 0.875 & 0.875 & 0.894 & 0.863 & 0.848 & 0.653 & 0.897 & 0.890 \\ \hline
-KC & 0.700 & 0.636 & 0.607 & 0.607 & 0.712 & 0.593 & 0.600 & 0.712 & 0.726 & 0.733 \\ \hline
-UA & 0.934 & 0.908 & 0.897 & 0.897 & 0.869 & 0.891 & 0.767 & 0.885 & 0.945 & 0.951 \\ 
+AN & 0.662 & 0.606 & 0.603 & 0.603 & 0.618 & 0.603 & 0.566 & \textbf{0.744} & 0.662 & 0.659 \\ \hline
+CN & 0.844 & 0.797 & 0.790 & 0.790 & 0.805 & 0.779 & 0.725 & 0.750 & 0.861 & \textbf{0.866} \\ \hline
+Dp & 0.779 & 0.774 & 0.779 & 0.779 & 0.763 & 0.780 & 0.762 & 0.619 & \textbf{0.781} & \textbf{0.781} \\ \hline
+FB & 0.846 & 0.856 & 0.858 & 0.858 & 0.856 & 0.857 & \textbf{0.859} & 0.270 & 0.846 & 0.846 \\ \hline
+LM & 0.910 & 0.882 & 0.880 & 0.880 & 0.847 & 0.878 & 0.820 & 0.776 & 0.918 & \textbf{0.919} \\ \hline
+PB & 0.887 & 0.884 & 0.875 & 0.875 & 0.894 & 0.863 & 0.848 & 0.653 & \textbf{0.897} & 0.890 \\ \hline
+KC & 0.700 & 0.636 & 0.607 & 0.607 & 0.712 & 0.593 & 0.600 & 0.712 & 0.726 & \textbf{0.733} \\ \hline
+UA & 0.934 & 0.908 & 0.897 & 0.897 & 0.869 & 0.891 & 0.767 & 0.885 & 0.945 & \textbf{0.951} \\ 
 \hline
 \end{tabular}
 \end{center}
 \end{table}
-
+%
 \setlength{\tabcolsep}{5pt}
 \renewcommand{\arraystretch}{1.5}
 \begin{table}
@@ -177,14 +162,14 @@ UA & 0.934 & 0.908 & 0.897 & 0.897 & 0.869 & 0.891 & 0.767 & 0.885 & 0.945 & 0.9
 \begin{tabular}{| l | l | l | l | l | l | l |}
 \hline
 & KI & LHN2 & ACT & CBL & RWR & MFI \\ \hline
-AN & 0.714 & 0.549 & 0.742 & 0.586 & 0.738 & 0.667 \\ \hline
-CN & 0.852 & 0.717 & 0.738 & 0.848 & 0.725 & 0.865 \\ \hline
-Dp & 0.799 & 0.825 & 0.760 & 0.791 & 0.649 & 0.804 \\ \hline
-FB & 0.857 & 0.879 & 0.588 & 0.885 & 0.273 & 0.878 \\ \hline
-LM & 0.884 & 0.813 & 0.863 & 0.825 & 0.794 & 0.867 \\ \hline
-PB & 0.891 & 0.858 & 0.729 & 0.891 & 0.618 & 0.899 \\ \hline
-KC & 0.755 & 0.610 & 0.666 & 0.739 & 0.618 & 0.749 \\ \hline
-UA & 0.920 & NaN & 0.892 & 0.913 & 0.862 & 0.913 \\ 
+AN & 0.714 & 0.549 & \textbf{0.742} & 0.586 & 0.738 & 0.667 \\ \hline
+CN & 0.852 & 0.717 & 0.738 & 0.848 & 0.725 & \textbf{0.865} \\ \hline
+Dp & 0.799 & \textbf{0.825} & 0.760 & 0.791 & 0.649 & 0.804 \\ \hline
+FB & 0.857 & 0.879 & 0.588 & \textbf{0.885} & 0.273 & 0.878 \\ \hline
+LM & \textbf{0.884} & 0.813 & 0.863 & 0.825 & 0.794 & 0.867 \\ \hline
+PB & 0.891 & 0.858 & 0.729 & 0.891 & 0.618 & \textbf{0.899} \\ \hline
+KC & \textbf{0.755} & 0.610 & 0.666 & 0.739 & 0.618 & 0.749 \\ \hline
+UA & \textbf{0.920} & NaN & 0.892 & 0.913 & 0.862 & 0.913 \\ 
 \hline
 \end{tabular}
 \end{center}
@@ -194,7 +179,7 @@ UA & 0.920 & NaN & 0.892 & 0.913 & 0.862 & 0.913 \\
 %
 We begin by defining the test dataset to check the performance of the algorithm. We shuffle the set of existing edges and split it into $n$ parts $E'_i, \ i \in \{1, \ldots, n\}$. It is said that $n = 10$ achieves the best complexity-precision tradeoff. Now we can use the set $\bar{E_i} = E'_i \cup \bar{E}$ as test dataset, where if $e \in E'_i$ then $class_e = 1$ and if $e \in \bar{E}$ then $class_e = 0$.
 
-Now we need to construct training dataset to train our classifier on it and then check its performance on the test dataset. We take the remaining set of edges $E_i$, shuffle it and split it into $n$ parts $(E'_i)'_j$. To achieve balanced training dataset with the same amount of edges with class 0 and 1 we split the complement $\bar{E_i}$ into subsets of the same size as $(E'_i)'_j$. Now for each subset $(E'_i)'_j$ we take this subset out of $E_i$, then calculate indices on the complement of the remaining set and mark classes as $class_e$, where if $e \in (E'_i)'_j$ then $class_e = 1$ and if $e \in \bar{E}_i$ then $class_e = 0$. And to get balanced dataset, on each step we take only edges from one subset of $\bar{E_i}$ as examples of class 0.
+Now we need to construct training dataset to train our classifier on it and then check its performance on the test dataset. We take the remaining set of edges $E_i$, shuffle it and split it into $n$ parts $(E'_i)'_j$. To achieve balanced training dataset with the same amount of edges with class 0 and 1 we split the complement $\bar{E_i}$ into subsets of the same size as $(E'_i)'_j$. Now for each subset $(E'_i)'_j$ we take this subset out of $E_i$, then calculate indices on the complement of the remaining set and mark classes as $class_e$, where if $e \in (E'_i)'_j$ then $class_e = 1$ and if $e \in \bar{E}_i$ then $class_e = 0$. And to get balanced dataset, on each step we take edges from only one subset of $\bar{E_i}$ as examples of class 0.
 
 After $n$ steps of the above process we get the trainig dataset of size $2 |E_i|$. Now we can train our classifier on this dataset and then test its performance on the test dataset. After testing SVM, decision trees, k nearest neighbours, random forests, LDA and QDA it was observed that the best performance is achieved with classification using random forests ().
 %
@@ -204,7 +189,7 @@ After $n$ steps of the above process we get the trainig dataset of size $2 |E_i|
 \renewcommand{\arraystretch}{1.5}
 \begin{table}
 \begin{center}
-\caption{Scores of the algorithm performance on the class of marked links.}
+\caption{Scores of the algorithm performance on the class 1 of marked links.}
 \begin{tabular}{| l | l | l | l | l | l |}
 \hline
 & F1 & Precision & Recall & ROCAUC & Accuracy  \\ \hline
@@ -221,383 +206,414 @@ UA & 0.083 $\pm$ 0.008 & 0.044 $\pm$ 0.004 & 0.901 $\pm$ 0.024 & 0.910 $\pm$ 0.0
 \end{center}
 \end{table}
 %
-We assume that $H$ is
-$\left(A_{\infty},B_{\infty}\right)$-sub\-qua\-dra\-tic at infinity,
-for some constant symmetric matrices $A_{\infty}$ and $B_{\infty}$,
-with $B_{\infty}-A_{\infty}$ positive definite. Set:
-\begin{eqnarray}
-\gamma :&=&{\rm smallest\ eigenvalue\ of}\ \ B_{\infty} - A_{\infty} \\
-  \lambda : &=& {\rm largest\ negative\ eigenvalue\ of}\ \
-  J \frac{d}{dt} +A_{\infty}\ .
-\end{eqnarray}
-
-Theorem~\ref{ghou:pre} tells us that if $\lambda +\gamma < 0$, the
-boundary-value problem:
-\begin{equation}
-\begin{array}{rcl}
-  \dot{x}&=&JH' (x)\\
-  x(0)&=&x (T)
-\end{array}
-\end{equation}
-has at least one solution
-$\overline{x}$, which is found by minimizing the dual
-action functional:
-\begin{equation}
-  \psi (u) = \int_{o}^{T} \left[\frac{1}{2}
-  \left(\Lambda_{o}^{-1} u,u\right) + N^{\ast} (-u)\right] dt
-\end{equation}
-on the range of $\Lambda$, which is a subspace $R (\Lambda)_{L}^{2}$
-with finite codimension. Here
-\begin{equation}
-  N(x) := H(x) - \frac{1}{2} \left(A_{\infty} x,x\right)
-\end{equation}
-is a convex function, and
-\begin{equation}
-  N(x) \le \frac{1}{2}
-  \left(\left(B_{\infty} - A_{\infty}\right) x,x\right)
-  + c\ \ \ \forall x\ .
-\end{equation}
-
+\section{Conclusion}
 %
-\begin{proposition}
-Assume $H'(0)=0$ and $ H(0)=0$. Set:
-\begin{equation}
-  \delta := \liminf_{x\to 0} 2 N (x) \left\|x\right\|^{-2}\ .
-  \label{eq:one}
-\end{equation}
-
-If $\gamma < - \lambda < \delta$,
-the solution $\overline{u}$ is non-zero:
-\begin{equation}
-  \overline{x} (t) \ne 0\ \ \ \forall t\ .
-\end{equation}
-\end{proposition}
+Proposed approach of supervised learning for link prediction showed interesting results on the selected networks. It appears that the algoritm classifies most of the removed links correctly, but also classifies a lot of links that were not present in the network in the first place as the ones that were removed.
 %
-\begin{proof}
-Condition (\ref{eq:one}) means that, for every
-$\delta ' > \delta$, there is some $\varepsilon > 0$ such that
-\begin{equation}
-  \left\|x\right\| \le \varepsilon \Rightarrow N (x) \le
-  \frac{\delta '}{2} \left\|x\right\|^{2}\ .
-\end{equation}
-
-It is an exercise in convex analysis, into which we shall not go, to
-show that this implies that there is an $\eta > 0$ such that
-\begin{equation}
-  f\left\|x\right\| \le \eta
-  \Rightarrow N^{\ast} (y) \le \frac{1}{2\delta '}
-  \left\|y\right\|^{2}\ .
-  \label{eq:two}
-\end{equation}
-
-\begin{figure}
-\vspace{2.5cm}
-\caption{This is the caption of the figure displaying a white eagle and
-a white horse on a snow field}
-\end{figure}
-
-Since $u_{1}$ is a smooth function, we will have
-$\left\|hu_{1}\right\|_\infty \le \eta$
-for $h$ small enough, and inequality (\ref{eq:two}) will hold,
-yielding thereby:
-\begin{equation}
-  \psi (hu_{1}) \le \frac{h^{2}}{2}
-  \frac{1}{\lambda} \left\|u_{1} \right\|_{2}^{2} + \frac{h^{2}}{2}
-  \frac{1}{\delta '} \left\|u_{1}\right\|^{2}\ .
-\end{equation}
-
-If we choose $\delta '$ close enough to $\delta$, the quantity
-$\left(\frac{1}{\lambda} + \frac{1}{\delta '}\right)$
-will be negative, and we end up with
-\begin{equation}
-  \psi (hu_{1}) < 0\ \ \ \ \ {\rm for}\ \ h\ne 0\ \ {\rm small}\ .
-\end{equation}
-
-On the other hand, we check directly that $\psi (0) = 0$. This shows
-that 0 cannot be a minimizer of $\psi$, not even a local one.
-So $\overline{u} \ne 0$ and
-$\overline{u} \ne \Lambda_{o}^{-1} (0) = 0$. \qed
-\end{proof}
+\\
+\\
+\\
+%We assume that $H$ is
+%$\left(A_{\infty},B_{\infty}\right)$-sub\-qua\-dra\-tic at infinity,
+%for some constant symmetric matrices $A_{\infty}$ and $B_{\infty}$,
+%with $B_{\infty}-A_{\infty}$ positive definite. Set:
+%\begin{eqnarray}
+%\gamma :&=&{\rm smallest\ eigenvalue\ of}\ \ B_{\infty} - A_{\infty} \\
+%  \lambda : &=& {\rm largest\ negative\ eigenvalue\ of}\ \
+%  J \frac{d}{dt} +A_{\infty}\ .
+%\end{eqnarray}
 %
-\begin{corollary}
-Assume $H$ is $C^{2}$ and
-$\left(a_{\infty},b_{\infty}\right)$-subquadratic at infinity. Let
-$\xi_{1},\allowbreak\dots,\allowbreak\xi_{N}$  be the
-equilibria, that is, the solutions of $H' (\xi ) = 0$.
-Denote by $\omega_{k}$
-the smallest eigenvalue of $H'' \left(\xi_{k}\right)$, and set:
-\begin{equation}
-  \omega : = {\rm Min\,} \left\{\omega_{1},\dots,\omega_{k}\right\}\ .
-\end{equation}
-If:
-\begin{equation}
-  \frac{T}{2\pi} b_{\infty} <
-  - E \left[- \frac{T}{2\pi}a_{\infty}\right] <
-  \frac{T}{2\pi}\omega
-  \label{eq:three}
-\end{equation}
-then minimization of $\psi$ yields a non-constant $T$-periodic solution
-$\overline{x}$.
-\end{corollary}
+%Theorem~\ref{ghou:pre} tells us that if $\lambda +\gamma < 0$, the
+%boundary-value problem:
+%\begin{equation}
+%\begin{array}{rcl}
+%  \dot{x}&=&JH' (x)\\
+%  x(0)&=&x (T)
+%\end{array}
+%\end{equation}
+%has at least one solution
+%$\overline{x}$, which is found by minimizing the dual
+%action functional:
+%\begin{equation}
+%  \psi (u) = \int_{o}^{T} \left[\frac{1}{2}
+%  \left(\Lambda_{o}^{-1} u,u\right) + N^{\ast} (-u)\right] dt
+%\end{equation}
+%on the range of $\Lambda$, which is a subspace $R (\Lambda)_{L}^{2}$
+%with finite codimension. Here
+%\begin{equation}
+%  N(x) := H(x) - \frac{1}{2} \left(A_{\infty} x,x\right)
+%\end{equation}
+%is a convex function, and
+%\begin{equation}
+%  N(x) \le \frac{1}{2}
+%  \left(\left(B_{\infty} - A_{\infty}\right) x,x\right)
+%  + c\ \ \ \forall x\ .
+%\end{equation}
 %
-
-We recall once more that by the integer part $E [\alpha ]$ of
-$\alpha \in \bbbr$, we mean the $a\in \bbbz$
-such that $a< \alpha \le a+1$. For instance,
-if we take $a_{\infty} = 0$, Corollary 2 tells
-us that $\overline{x}$ exists and is
-non-constant provided that:
-
-\begin{equation}
-  \frac{T}{2\pi} b_{\infty} < 1 < \frac{T}{2\pi}
-\end{equation}
-or
-\begin{equation}
-  T\in \left(\frac{2\pi}{\omega},\frac{2\pi}{b_{\infty}}\right)\ .
-  \label{eq:four}
-\end{equation}
-
+%%
+%\begin{proposition}
+%Assume $H'(0)=0$ and $ H(0)=0$. Set:
+%\begin{equation}
+%  \delta := \liminf_{x\to 0} 2 N (x) \left\|x\right\|^{-2}\ .
+%  \label{eq:one}
+%\end{equation}
 %
-\begin{proof}
-The spectrum of $\Lambda$ is $\frac{2\pi}{T} \bbbz +a_{\infty}$. The
-largest negative eigenvalue $\lambda$ is given by
-$\frac{2\pi}{T}k_{o} +a_{\infty}$,
-where
-\begin{equation}
-  \frac{2\pi}{T}k_{o} + a_{\infty} < 0
-  \le \frac{2\pi}{T} (k_{o} +1) + a_{\infty}\ .
-\end{equation}
-Hence:
-\begin{equation}
-  k_{o} = E \left[- \frac{T}{2\pi} a_{\infty}\right] \ .
-\end{equation}
-
-The condition $\gamma < -\lambda < \delta$ now becomes:
-\begin{equation}
-  b_{\infty} - a_{\infty} <
-  - \frac{2\pi}{T} k_{o} -a_{\infty} < \omega -a_{\infty}
-\end{equation}
-which is precisely condition (\ref{eq:three}).\qed
-\end{proof}
+%If $\gamma < - \lambda < \delta$,
+%the solution $\overline{u}$ is non-zero:
+%\begin{equation}
+%  \overline{x} (t) \ne 0\ \ \ \forall t\ .
+%\end{equation}
+%\end{proposition}
+%%
+%\begin{proof}
+%Condition (\ref{eq:one}) means that, for every
+%$\delta ' > \delta$, there is some $\varepsilon > 0$ such that
+%\begin{equation}
+%  \left\|x\right\| \le \varepsilon \Rightarrow N (x) \le
+%  \frac{\delta '}{2} \left\|x\right\|^{2}\ .
+%\end{equation}
 %
-
-\begin{lemma}
-Assume that $H$ is $C^{2}$ on $\bbbr^{2n} \setminus \{ 0\}$ and
-that $H'' (x)$ is non-de\-gen\-er\-ate for any $x\ne 0$. Then any local
-minimizer $\widetilde{x}$ of $\psi$ has minimal period $T$.
-\end{lemma}
+%It is an exercise in convex analysis, into which we shall not go, to
+%show that this implies that there is an $\eta > 0$ such that
+%\begin{equation}
+%  f\left\|x\right\| \le \eta
+%  \Rightarrow N^{\ast} (y) \le \frac{1}{2\delta '}
+%  \left\|y\right\|^{2}\ .
+%  \label{eq:two}
+%\end{equation}
 %
-\begin{proof}
-We know that $\widetilde{x}$, or
-$\widetilde{x} + \xi$ for some constant $\xi
-\in \bbbr^{2n}$, is a $T$-periodic solution of the Hamiltonian system:
-\begin{equation}
-  \dot{x} = JH' (x)\ .
-\end{equation}
-
-There is no loss of generality in taking $\xi = 0$. So
-$\psi (x) \ge \psi (\widetilde{x} )$
-for all $\widetilde{x}$ in some neighbourhood of $x$ in
-$W^{1,2} \left(\bbbr / T\bbbz ; \bbbr^{2n}\right)$.
-
-But this index is precisely the index
-$i_{T} (\widetilde{x} )$ of the $T$-periodic
-solution $\widetilde{x}$ over the interval
-$(0,T)$, as defined in Sect.~2.6. So
-\begin{equation}
-  i_{T} (\widetilde{x} ) = 0\ .
-  \label{eq:five}
-\end{equation}
-
-Now if $\widetilde{x}$ has a lower period, $T/k$ say,
-we would have, by Corollary 31:
-\begin{equation}
-  i_{T} (\widetilde{x} ) =
-  i_{kT/k}(\widetilde{x} ) \ge
-  ki_{T/k} (\widetilde{x} ) + k-1 \ge k-1 \ge 1\ .
-\end{equation}
-
-This would contradict (\ref{eq:five}), and thus cannot happen.\qed
-\end{proof}
+%\begin{figure}
+%\vspace{2.5cm}
+%\caption{This is the caption of the figure displaying a white eagle and
+%a white horse on a snow field}
+%\end{figure}
 %
-\paragraph{Notes and Comments.}
-The results in this section are a
-refined version of \cite{clar:eke};
-the minimality result of Proposition
-14 was the first of its kind.
-
-To understand the nontriviality conditions, such as the one in formula
-(\ref{eq:four}), one may think of a one-parameter family
-$x_{T}$, $T\in \left(2\pi\omega^{-1}, 2\pi b_{\infty}^{-1}\right)$
-of periodic solutions, $x_{T} (0) = x_{T} (T)$,
-with $x_{T}$ going away to infinity when $T\to 2\pi \omega^{-1}$,
-which is the period of the linearized system at 0.
-
-\begin{table}
-\caption{This is the example table taken out of {\it The
-\TeX{}book,} p.\,246}
-\begin{center}
-\begin{tabular}{r@{\quad}rl}
-\hline
-\multicolumn{1}{l}{\rule{0pt}{12pt}
-                   Year}&\multicolumn{2}{l}{World population}\\[2pt]
-\hline\rule{0pt}{12pt}
-8000 B.C.  &     5,000,000& \\
-  50 A.D.  &   200,000,000& \\
-1650 A.D.  &   500,000,000& \\
-1945 A.D.  & 2,300,000,000& \\
-1980 A.D.  & 4,400,000,000& \\[2pt]
-\hline
-\end{tabular}
-\end{center}
-\end{table}
+%Since $u_{1}$ is a smooth function, we will have
+%$\left\|hu_{1}\right\|_\infty \le \eta$
+%for $h$ small enough, and inequality (\ref{eq:two}) will hold,
+%yielding thereby:
+%\begin{equation}
+%  \psi (hu_{1}) \le \frac{h^{2}}{2}
+%  \frac{1}{\lambda} \left\|u_{1} \right\|_{2}^{2} + \frac{h^{2}}{2}
+%  \frac{1}{\delta '} \left\|u_{1}\right\|^{2}\ .
+%\end{equation}
 %
-\begin{theorem} [Ghoussoub-Preiss]\label{ghou:pre}
-Assume $H(t,x)$ is
-$(0,\varepsilon )$-subquadratic at
-infinity for all $\varepsilon > 0$, and $T$-periodic in $t$
-\begin{equation}
-  H (t,\cdot )\ \ \ \ \ {\rm is\ convex}\ \ \forall t
-\end{equation}
-\begin{equation}
-  H (\cdot ,x)\ \ \ \ \ {\rm is}\ \ T{\rm -periodic}\ \ \forall x
-\end{equation}
-\begin{equation}
-  H (t,x)\ge n\left(\left\|x\right\|\right)\ \ \ \ \
-  {\rm with}\ \ n (s)s^{-1}\to \infty\ \ {\rm as}\ \ s\to \infty
-\end{equation}
-\begin{equation}
-  \forall \varepsilon > 0\ ,\ \ \ \exists c\ :\
-  H(t,x) \le \frac{\varepsilon}{2}\left\|x\right\|^{2} + c\ .
-\end{equation}
-
-Assume also that $H$ is $C^{2}$, and $H'' (t,x)$ is positive definite
-everywhere. Then there is a sequence $x_{k}$, $k\in \bbbn$, of
-$kT$-periodic solutions of the system
-\begin{equation}
-  \dot{x} = JH' (t,x)
-\end{equation}
-such that, for every $k\in \bbbn$, there is some $p_{o}\in\bbbn$ with:
-\begin{equation}
-  p\ge p_{o}\Rightarrow x_{pk} \ne x_{k}\ .
-\end{equation}
-\qed
-\end{theorem}
+%If we choose $\delta '$ close enough to $\delta$, the quantity
+%$\left(\frac{1}{\lambda} + \frac{1}{\delta '}\right)$
+%will be negative, and we end up with
+%\begin{equation}
+%  \psi (hu_{1}) < 0\ \ \ \ \ {\rm for}\ \ h\ne 0\ \ {\rm small}\ .
+%\end{equation}
 %
-\begin{example} [{{\rm External forcing}}]
-Consider the system:
-\begin{equation}
-  \dot{x} = JH' (x) + f(t)
-\end{equation}
-where the Hamiltonian $H$ is
-$\left(0,b_{\infty}\right)$-subquadratic, and the
-forcing term is a distribution on the circle:
-\begin{equation}
-  f = \frac{d}{dt} F + f_{o}\ \ \ \ \
-  {\rm with}\ \ F\in L^{2} \left(\bbbr / T\bbbz; \bbbr^{2n}\right)\ ,
-\end{equation}
-where $f_{o} : = T^{-1}\int_{o}^{T} f (t) dt$. For instance,
-\begin{equation}
-  f (t) = \sum_{k\in \bbbn} \delta_{k} \xi\ ,
-\end{equation}
-where $\delta_{k}$ is the Dirac mass at $t= k$ and
-$\xi \in \bbbr^{2n}$ is a
-constant, fits the prescription. This means that the system
-$\dot{x} = JH' (x)$ is being excited by a
-series of identical shocks at interval $T$.
-\end{example}
+%On the other hand, we check directly that $\psi (0) = 0$. This shows
+%that 0 cannot be a minimizer of $\psi$, not even a local one.
+%So $\overline{u} \ne 0$ and
+%$\overline{u} \ne \Lambda_{o}^{-1} (0) = 0$. \qed
+%\end{proof}
+%%
+%\begin{corollary}
+%Assume $H$ is $C^{2}$ and
+%$\left(a_{\infty},b_{\infty}\right)$-subquadratic at infinity. Let
+%$\xi_{1},\allowbreak\dots,\allowbreak\xi_{N}$  be the
+%equilibria, that is, the solutions of $H' (\xi ) = 0$.
+%Denote by $\omega_{k}$
+%the smallest eigenvalue of $H'' \left(\xi_{k}\right)$, and set:
+%\begin{equation}
+%  \omega : = {\rm Min\,} \left\{\omega_{1},\dots,\omega_{k}\right\}\ .
+%\end{equation}
+%If:
+%\begin{equation}
+%  \frac{T}{2\pi} b_{\infty} <
+%  - E \left[- \frac{T}{2\pi}a_{\infty}\right] <
+%  \frac{T}{2\pi}\omega
+%  \label{eq:three}
+%\end{equation}
+%then minimization of $\psi$ yields a non-constant $T$-periodic solution
+%$\overline{x}$.
+%\end{corollary}
+%%
 %
-\begin{definition}
-Let $A_{\infty} (t)$ and $B_{\infty} (t)$ be symmetric
-operators in $\bbbr^{2n}$, depending continuously on
-$t\in [0,T]$, such that
-$A_{\infty} (t) \le B_{\infty} (t)$ for all $t$.
-
-A Borelian function
-$H: [0,T]\times \bbbr^{2n} \to \bbbr$
-is called
-$\left(A_{\infty} ,B_{\infty}\right)$-{\it subquadratic at infinity}
-if there exists a function $N(t,x)$ such that:
-\begin{equation}
-  H (t,x) = \frac{1}{2} \left(A_{\infty} (t) x,x\right) + N(t,x)
-\end{equation}
-\begin{equation}
-  \forall t\ ,\ \ \ N(t,x)\ \ \ \ \
-  {\rm is\ convex\ with\  respect\  to}\ \ x
-\end{equation}
-\begin{equation}
-  N(t,x) \ge n\left(\left\|x\right\|\right)\ \ \ \ \
-  {\rm with}\ \ n(s)s^{-1}\to +\infty\ \ {\rm as}\ \ s\to +\infty
-\end{equation}
-\begin{equation}
-  \exists c\in \bbbr\ :\ \ \ H (t,x) \le
-  \frac{1}{2} \left(B_{\infty} (t) x,x\right) + c\ \ \ \forall x\ .
-\end{equation}
-
-If $A_{\infty} (t) = a_{\infty} I$ and
-$B_{\infty} (t) = b_{\infty} I$, with
-$a_{\infty} \le b_{\infty} \in \bbbr$,
-we shall say that $H$ is
-$\left(a_{\infty},b_{\infty}\right)$-subquadratic
-at infinity. As an example, the function
-$\left\|x\right\|^{\alpha}$, with
-$1\le \alpha < 2$, is $(0,\varepsilon )$-subquadratic at infinity
-for every $\varepsilon > 0$. Similarly, the Hamiltonian
-\begin{equation}
-H (t,x) = \frac{1}{2} k \left\|k\right\|^{2} +\left\|x\right\|^{\alpha}
-\end{equation}
-is $(k,k+\varepsilon )$-subquadratic for every $\varepsilon > 0$.
-Note that, if $k<0$, it is not convex.
-\end{definition}
+%We recall once more that by the integer part $E [\alpha ]$ of
+%$\alpha \in \bbbr$, we mean the $a\in \bbbz$
+%such that $a< \alpha \le a+1$. For instance,
+%if we take $a_{\infty} = 0$, Corollary 2 tells
+%us that $\overline{x}$ exists and is
+%non-constant provided that:
 %
-
-\paragraph{Notes and Comments.}
-The first results on subharmonics were
-obtained by Rabinowitz in \cite{rab}, who showed the existence of
-infinitely many subharmonics both in the subquadratic and superquadratic
-case, with suitable growth conditions on $H'$. Again the duality
-approach enabled Clarke and Ekeland in \cite{clar:eke:2} to treat the
-same problem in the convex-subquadratic case, with growth conditions on
-$H$ only.
-
-Recently, Michalek and Tarantello (see \cite{mich:tar} and \cite{tar})
-have obtained lower bound on the number of subharmonics of period $kT$,
-based on symmetry considerations and on pinching estimates, as in
-Sect.~5.2 of this article.
+%\begin{equation}
+%  \frac{T}{2\pi} b_{\infty} < 1 < \frac{T}{2\pi}
+%\end{equation}
+%or
+%\begin{equation}
+%  T\in \left(\frac{2\pi}{\omega},\frac{2\pi}{b_{\infty}}\right)\ .
+%  \label{eq:four}
+%\end{equation}
+%
+%%
+%\begin{proof}
+%The spectrum of $\Lambda$ is $\frac{2\pi}{T} \bbbz +a_{\infty}$. The
+%largest negative eigenvalue $\lambda$ is given by
+%$\frac{2\pi}{T}k_{o} +a_{\infty}$,
+%where
+%\begin{equation}
+%  \frac{2\pi}{T}k_{o} + a_{\infty} < 0
+%  \le \frac{2\pi}{T} (k_{o} +1) + a_{\infty}\ .
+%\end{equation}
+%Hence:
+%\begin{equation}
+%  k_{o} = E \left[- \frac{T}{2\pi} a_{\infty}\right] \ .
+%\end{equation}
+%
+%The condition $\gamma < -\lambda < \delta$ now becomes:
+%\begin{equation}
+%  b_{\infty} - a_{\infty} <
+%  - \frac{2\pi}{T} k_{o} -a_{\infty} < \omega -a_{\infty}
+%\end{equation}
+%which is precisely condition (\ref{eq:three}).\qed
+%\end{proof}
+%%
+%
+%\begin{lemma}
+%Assume that $H$ is $C^{2}$ on $\bbbr^{2n} \setminus \{ 0\}$ and
+%that $H'' (x)$ is non-de\-gen\-er\-ate for any $x\ne 0$. Then any local
+%minimizer $\widetilde{x}$ of $\psi$ has minimal period $T$.
+%\end{lemma}
+%%
+%\begin{proof}
+%We know that $\widetilde{x}$, or
+%$\widetilde{x} + \xi$ for some constant $\xi
+%\in \bbbr^{2n}$, is a $T$-periodic solution of the Hamiltonian system:
+%\begin{equation}
+%  \dot{x} = JH' (x)\ .
+%\end{equation}
+%
+%There is no loss of generality in taking $\xi = 0$. So
+%$\psi (x) \ge \psi (\widetilde{x} )$
+%for all $\widetilde{x}$ in some neighbourhood of $x$ in
+%$W^{1,2} \left(\bbbr / T\bbbz ; \bbbr^{2n}\right)$.
+%
+%But this index is precisely the index
+%$i_{T} (\widetilde{x} )$ of the $T$-periodic
+%solution $\widetilde{x}$ over the interval
+%$(0,T)$, as defined in Sect.~2.6. So
+%\begin{equation}
+%  i_{T} (\widetilde{x} ) = 0\ .
+%  \label{eq:five}
+%\end{equation}
+%
+%Now if $\widetilde{x}$ has a lower period, $T/k$ say,
+%we would have, by Corollary 31:
+%\begin{equation}
+%  i_{T} (\widetilde{x} ) =
+%  i_{kT/k}(\widetilde{x} ) \ge
+%  ki_{T/k} (\widetilde{x} ) + k-1 \ge k-1 \ge 1\ .
+%\end{equation}
+%
+%This would contradict (\ref{eq:five}), and thus cannot happen.\qed
+%\end{proof}
+%%
+%\paragraph{Notes and Comments.}
+%The results in this section are a
+%refined version of \cite{clar:eke};
+%the minimality result of Proposition
+%14 was the first of its kind.
+%
+%To understand the nontriviality conditions, such as the one in formula
+%(\ref{eq:four}), one may think of a one-parameter family
+%$x_{T}$, $T\in \left(2\pi\omega^{-1}, 2\pi b_{\infty}^{-1}\right)$
+%of periodic solutions, $x_{T} (0) = x_{T} (T)$,
+%with $x_{T}$ going away to infinity when $T\to 2\pi \omega^{-1}$,
+%which is the period of the linearized system at 0.
+%
+%\begin{table}
+%\caption{This is the example table taken out of {\it The
+%\TeX{}book,} p.\,246}
+%\begin{center}
+%\begin{tabular}{r@{\quad}rl}
+%\hline
+%\multicolumn{1}{l}{\rule{0pt}{12pt}
+%                   Year}&\multicolumn{2}{l}{World population}\\[2pt]
+%\hline\rule{0pt}{12pt}
+%8000 B.C.  &     5,000,000& \\
+%  50 A.D.  &   200,000,000& \\
+%1650 A.D.  &   500,000,000& \\
+%1945 A.D.  & 2,300,000,000& \\
+%1980 A.D.  & 4,400,000,000& \\[2pt]
+%\hline
+%\end{tabular}
+%\end{center}
+%\end{table}
+%%
+%\begin{theorem} [Ghoussoub-Preiss]\label{ghou:pre}
+%Assume $H(t,x)$ is
+%$(0,\varepsilon )$-subquadratic at
+%infinity for all $\varepsilon > 0$, and $T$-periodic in $t$
+%\begin{equation}
+%  H (t,\cdot )\ \ \ \ \ {\rm is\ convex}\ \ \forall t
+%\end{equation}
+%\begin{equation}
+%  H (\cdot ,x)\ \ \ \ \ {\rm is}\ \ T{\rm -periodic}\ \ \forall x
+%\end{equation}
+%\begin{equation}
+%  H (t,x)\ge n\left(\left\|x\right\|\right)\ \ \ \ \
+%  {\rm with}\ \ n (s)s^{-1}\to \infty\ \ {\rm as}\ \ s\to \infty
+%\end{equation}
+%\begin{equation}
+%  \forall \varepsilon > 0\ ,\ \ \ \exists c\ :\
+%  H(t,x) \le \frac{\varepsilon}{2}\left\|x\right\|^{2} + c\ .
+%\end{equation}
+%
+%Assume also that $H$ is $C^{2}$, and $H'' (t,x)$ is positive definite
+%everywhere. Then there is a sequence $x_{k}$, $k\in \bbbn$, of
+%$kT$-periodic solutions of the system
+%\begin{equation}
+%  \dot{x} = JH' (t,x)
+%\end{equation}
+%such that, for every $k\in \bbbn$, there is some $p_{o}\in\bbbn$ with:
+%\begin{equation}
+%  p\ge p_{o}\Rightarrow x_{pk} \ne x_{k}\ .
+%\end{equation}
+%\qed
+%\end{theorem}
+%%
+%\begin{example} [{{\rm External forcing}}]
+%Consider the system:
+%\begin{equation}
+%  \dot{x} = JH' (x) + f(t)
+%\end{equation}
+%where the Hamiltonian $H$ is
+%$\left(0,b_{\infty}\right)$-subquadratic, and the
+%forcing term is a distribution on the circle:
+%\begin{equation}
+%  f = \frac{d}{dt} F + f_{o}\ \ \ \ \
+%  {\rm with}\ \ F\in L^{2} \left(\bbbr / T\bbbz; \bbbr^{2n}\right)\ ,
+%\end{equation}
+%where $f_{o} : = T^{-1}\int_{o}^{T} f (t) dt$. For instance,
+%\begin{equation}
+%  f (t) = \sum_{k\in \bbbn} \delta_{k} \xi\ ,
+%\end{equation}
+%where $\delta_{k}$ is the Dirac mass at $t= k$ and
+%$\xi \in \bbbr^{2n}$ is a
+%constant, fits the prescription. This means that the system
+%$\dot{x} = JH' (x)$ is being excited by a
+%series of identical shocks at interval $T$.
+%\end{example}
+%%
+%\begin{definition}
+%Let $A_{\infty} (t)$ and $B_{\infty} (t)$ be symmetric
+%operators in $\bbbr^{2n}$, depending continuously on
+%$t\in [0,T]$, such that
+%$A_{\infty} (t) \le B_{\infty} (t)$ for all $t$.
+%
+%A Borelian function
+%$H: [0,T]\times \bbbr^{2n} \to \bbbr$
+%is called
+%$\left(A_{\infty} ,B_{\infty}\right)$-{\it subquadratic at infinity}
+%if there exists a function $N(t,x)$ such that:
+%\begin{equation}
+%  H (t,x) = \frac{1}{2} \left(A_{\infty} (t) x,x\right) + N(t,x)
+%\end{equation}
+%\begin{equation}
+%  \forall t\ ,\ \ \ N(t,x)\ \ \ \ \
+%  {\rm is\ convex\ with\  respect\  to}\ \ x
+%\end{equation}
+%\begin{equation}
+%  N(t,x) \ge n\left(\left\|x\right\|\right)\ \ \ \ \
+%  {\rm with}\ \ n(s)s^{-1}\to +\infty\ \ {\rm as}\ \ s\to +\infty
+%\end{equation}
+%\begin{equation}
+%  \exists c\in \bbbr\ :\ \ \ H (t,x) \le
+%  \frac{1}{2} \left(B_{\infty} (t) x,x\right) + c\ \ \ \forall x\ .
+%\end{equation}
+%
+%If $A_{\infty} (t) = a_{\infty} I$ and
+%$B_{\infty} (t) = b_{\infty} I$, with
+%$a_{\infty} \le b_{\infty} \in \bbbr$,
+%we shall say that $H$ is
+%$\left(a_{\infty},b_{\infty}\right)$-subquadratic
+%at infinity. As an example, the function
+%$\left\|x\right\|^{\alpha}$, with
+%$1\le \alpha < 2$, is $(0,\varepsilon )$-subquadratic at infinity
+%for every $\varepsilon > 0$. Similarly, the Hamiltonian
+%\begin{equation}
+%H (t,x) = \frac{1}{2} k \left\|k\right\|^{2} +\left\|x\right\|^{\alpha}
+%\end{equation}
+%is $(k,k+\varepsilon )$-subquadratic for every $\varepsilon > 0$.
+%Note that, if $k<0$, it is not convex.
+%\end{definition}
+%%
+%
+%\paragraph{Notes and Comments.}
+%The first results on subharmonics were
+%obtained by Rabinowitz in \cite{rab}, who showed the existence of
+%infinitely many subharmonics both in the subquadratic and superquadratic
+%case, with suitable growth conditions on $H'$. Again the duality
+%approach enabled Clarke and Ekeland in \cite{clar:eke:2} to treat the
+%same problem in the convex-subquadratic case, with growth conditions on
+%$H$ only.
+%
+%Recently, Michalek and Tarantello (see \cite{mich:tar} and \cite{tar})
+%have obtained lower bound on the number of subharmonics of period $kT$,
+%based on symmetry considerations and on pinching estimates, as in
+%Sect.~5.2 of this article.
 
 %
 % ---- Bibliography ----
 %
-\begin{thebibliography}{5}
+\begin{thebibliography}{}
 %
-\bibitem {clar:eke}
-Clarke, F., Ekeland, I.:
-Nonlinear oscillations and
-boundary-value problems for Hamiltonian systems.
-Arch. Rat. Mech. Anal. 78, 315--333 (1982)
+%\bibitem {clar:eke}
+%Clarke, F., Ekeland, I.:
+%Nonlinear oscillations and
+%boundary-value problems for Hamiltonian systems.
+%Arch. Rat. Mech. Anal. 78, 315--333 (1982)
+%
+%\bibitem {clar:eke:2}
+%Clarke, F., Ekeland, I.:
+%Solutions p\'{e}riodiques, du
+%p\'{e}riode donn\'{e}e, des \'{e}quations hamiltoniennes.
+%Note CRAS Paris 287, 1013--1015 (1978)
+%
+%\bibitem {mich:tar}
+%Michalek, R., Tarantello, G.:
+%Subharmonic solutions with prescribed minimal
+%period for nonautonomous Hamiltonian systems.
+%J. Diff. Eq. 72, 28--55 (1988)
+%
+%\bibitem {tar}
+%Tarantello, G.:
+%Subharmonic solutions for Hamiltonian
+%systems via a $\bbbz_{p}$ pseudoindex theory.
+%Annali di Matematica Pura (to appear)
+%
+%\bibitem {rab}
+%Rabinowitz, P.:
+%On subharmonic solutions of a Hamiltonian system.
+%Comm. Pure Appl. Math. 33, 609--633 (1980) 
 
-\bibitem {clar:eke:2}
-Clarke, F., Ekeland, I.:
-Solutions p\'{e}riodiques, du
-p\'{e}riode donn\'{e}e, des \'{e}quations hamiltoniennes.
-Note CRAS Paris 287, 1013--1015 (1978)
+\bibitem {adjnoun-net}
+M. E. J. Newman, Phys. Rev. E 74, 036104 (2006). Available at: http://www-personal.umich.edu/~mejn/netdata/.
 
-\bibitem {mich:tar}
-Michalek, R., Tarantello, G.:
-Subharmonic solutions with prescribed minimal
-period for nonautonomous Hamiltonian systems.
-J. Diff. Eq. 72, 28--55 (1988)
+\bibitem {celneur-net}
+D. J. Watts and S. H. Strogatz, Nature 393, 440-442 (1998). Available at: http://www-personal.umich.edu/~mejn/netdata/.
 
-\bibitem {tar}
-Tarantello, G.:
-Subharmonic solutions for Hamiltonian
-systems via a $\bbbz_{p}$ pseudoindex theory.
-Annali di Matematica Pura (to appear)
+\bibitem {dolph-net}
+D. Lusseau, K. Schneider, O. J. Boisseau, P. Haase, E. Slooten, and S. M. Dawson, Behavioral Ecology and Sociobiology 54, 396-405 (2003). Available at: http://www-personal.umich.edu/~mejn/netdata/.
 
-\bibitem {rab}
-Rabinowitz, P.:
-On subharmonic solutions of a Hamiltonian system.
-Comm. Pure Appl. Math. 33, 609--633 (1980)
+\bibitem {foot-net}
+M. Girvan and M. E. J. Newman, Proc. Natl. Acad. Sci. USA 99, 7821-7826 (2002). Available at: http://www-personal.umich.edu/~mejn/netdata/.
+
+\bibitem {lesmis-net}
+D. E. Knuth, The Stanford GraphBase: A Platform for Combinatorial Computing, Addison-Wesley, Reading, MA (1993). Available at: http://www-personal.umich.edu/~mejn/netdata/.
+
+\bibitem {polbook-net}
+V. Krebs, Datasets. Available at: http://www-personal.umich.edu/~mejn/netdata/.
+
+\bibitem {karate-net}
+W. W. Zachary, An information flow model for conflict and fission in small groups, Journal of Anthropological Research 33, 452-473 (1977). Available at: http://www-personal.umich.edu/~mejn/netdata/.
+
+\bibitem {usair-net}
+V. Batageli, A. Mrvar, Pajek datasets. Available at: http://vlado.fmf.uni-lj.si/pub/networks/data/default.htm.
 
 \end{thebibliography}
 

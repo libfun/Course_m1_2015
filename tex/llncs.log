@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.10.15)  14 MAY 2015 17:08
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.10.15)  14 MAY 2015 17:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -169,52 +169,82 @@ Missing character: There is no â in font cmbx10!
 Missing character: There is no € in font cmbx10!
 Missing character: There is no “ in font cmbx10!
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <9> on input line 156.
+(Font)              <9> on input line 141.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 156.
- [3] [4]
-Overfull \hbox (4.63293pt too wide) in paragraph at lines 208--221
+(Font)              <6> on input line 141.
+
+Overfull \hbox (0.60237pt too wide) in paragraph at lines 141--154
+ [] 
+ []
+
+[3] [4]
+Overfull \hbox (4.63293pt too wide) in paragraph at lines 193--206
  [] 
  []
 
 
-Underfull \vbox (badness 1132) has occurred while \output is active []
+Underfull \hbox (badness 10000) in paragraph at lines 211--559
 
- [5]
-[6] [7] [8] [9] [10] (./llncs.aux) ) 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 211--559
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 211--559
+
+ []
+
+[5]
+Underfull \hbox (badness 4819) in paragraph at lines 607--608
+[]\OT1/cmr/m/n/9 D. E. Knuth, The Stan-ford Graph-Base: A Plat-form for Com-bi-
+na-to-rial
+ []
+
+
+Underfull \hbox (badness 1142) in paragraph at lines 607--608
+\OT1/cmr/m/n/9 Com-put-ing, Addison-Wesley, Read-ing, MA (1993). Avail-able at:
+ http://www-
+ []
+
+
+Underfull \hbox (badness 2469) in paragraph at lines 616--617
+[]\OT1/cmr/m/n/9 V. Batageli, A. Mr-var, Pa-jek datasets. Avail-able at: http:/
+/vlado.fmf.uni-
+ []
+
+[6] (./llncs.aux) ) 
 Here is how much of TeX's memory you used:
- 675 strings out of 493315
- 7402 string characters out of 6137903
- 79876 words of memory out of 5000000
- 4176 multiletter control sequences out of 15000+600000
- 12107 words of font info for 42 fonts, out of 8000000 for 9000
+ 658 strings out of 493315
+ 7260 string characters out of 6137903
+ 80876 words of memory out of 5000000
+ 4164 multiletter control sequences out of 15000+600000
+ 9905 words of font info for 35 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 29i,8n,21p,763b,284s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2013/texmf-dist/fonts/t
-ype1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2013/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2013/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmbx7.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmbx9.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmex10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/pu
-blic/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmmi9.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmmib10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmr10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmr5.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmr7.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmr9.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/c
-msy10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-sy5.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
-7.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.
-pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.p
-fb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb
-></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
-Output written on llncs.pdf (10 pages, 273537 bytes).
+ 29i,8n,21p,763b,263s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmbx10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmbx12.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmbx7.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmbx9.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmex10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmmi10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mmi7.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmm
+ib10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
+10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.
+pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb
+></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></
+usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></u
+sr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr
+/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/l
+ocal/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/loc
+al/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
+Output written on llncs.pdf (6 pages, 204833 bytes).
 PDF statistics:
- 121 PDF objects out of 1000 (max. 8388607)
- 87 compressed objects within 1 object stream
+ 91 PDF objects out of 1000 (max. 8388607)
+ 65 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
