@@ -63,23 +63,23 @@ We'll first describe all indices used for the prediction of links and then compa
 %
 \subsection{Local Indices}
 %
-\subsubsection{Common neighbours}
+\subsubsection{Common neighbours (CN)}
 %
 This is the easiest and most obvious approach to the idea of capturing the similarity of two nodes in the network. As such, a number of indices described below will use this measure with different weights. So if we denote $\Gamma(x)$ the number of neighbours of node $x$ in the graph, the formula looks like
 $$s_{xy}^{CN} = |\Gamma(x) \cap \Gamma(y)|,$$
 where $s_{xy}$ is the index.
 %
-\subsubsection{Salton Index}
+\subsubsection{Salton Index (SaI)}
 %
 This index is also called cosine similarity and is defined as
 $$s_{xy}^{Salton} = \frac{|\Gamma(x) \cap \Gamma(y)|}{\sqrt{k_x \times k_x}},$$
 where $k_x$ is the degree of node $x$.
 %
-\subsubsection{Jaccard Index}
+\subsubsection{Jaccard Index (JI)}
 %
 $$s_{xy}^{Jaccard} = \frac{|\Gamma(x) \cap \Gamma(y)|}{|\Gamma(x) \cup \Gamma(y)|}.$$
 %
-\subsubsection{S{\o}rensen Index}
+\subsubsection{S{\o}rensen Index (SoI)}
 %
 $$s_{xy}^{S{\o}rensen} = \frac{2|\Gamma(x) \cap \Gamma(y)|}{k_x + k_y}.$$
 %
@@ -95,21 +95,21 @@ $$s_{xy}^{HDI} = \frac{|\Gamma(x) \cap \Gamma(y)|}{max\{k_x, k_y\}}.$$
 %
 $$s_{xy}^{LHN1} = \frac{|\Gamma(x) \cap \Gamma(y)|}{k_x \times k_y}.$$
 %
-\subsubsection{Preferential Attachment Index (PA)}
+\subsubsection{Preferential Attachment Index (PAI)}
 %
 $$s_{xy}^{PA} = k_x \times k_y.$$
 %
-\subsubsection{Adamic–Adar Index (AA)}
+\subsubsection{Adamic–Adar Index (AAI)}
 %
 $$s_{xy}^{AA} = \sum_{z \in \Gamma(x) \cap \Gamma(y)} \frac{1}{log k_z}.$$
 %
-\subsubsection{Resource Allocation Index (RA)}
+\subsubsection{Resource Allocation Index (RAI)}
 %
 $$s_{xy}^{RA} = \sum_{z \in \Gamma(x) \cap \Gamma(y)} \frac{1}{k_z}.$$
 %
 \subsection{Global Similarity Indices}
 %
-\subsubsection{Katz Index}
+\subsubsection{Katz Index (KI)}
 %
 $$S^{Katz} = (I - \beta A)^{-1} - I.$$
 %
@@ -121,7 +121,7 @@ $$S^{LHN2} = 2 m \lambda_1 D^{-1} (I - \frac{\phi A}{\lambda_1})^{-1} D^{-1}.$$
 %
 $$S_{xy}^{ACT} = \frac{1}{l_{xx}^{+} + l_{yy}^{+} - 2l_{xy}^{+}}.$$
 %
-\subsubsection{Cosine based on $L^+$}
+\subsubsection{Cosine based on $L^+$ (CBL)}
 %
 $$s_{xy}^{cos^{+}} = cos(x, y)^{+} = \frac{v_x^T v_y}{|v_x| \cdot |v_y|} = \frac{l_{xy}^{+}}{\sqrt{l_{xx}^{+}\cdot l_{yy}^{+}}}.$$
 %
