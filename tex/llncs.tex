@@ -129,7 +129,7 @@ s_{xy}^{PA} = k_x \times k_y.
 %
 \paragraph{Adamic–Adar Index (AAI) \cite{aa-index}}
 %
-This index is a modified version of counting the amount of common neghbours as it values neighbours with lower degree higher:
+This index is a modified version of counting the amount of common neighbours as it values neighbours with lower degree higher:
 \begin{equation}
 s_{xy}^{AA} = \sum_{z \in \Gamma(x) \cap \Gamma(y)} \frac{1}{log k_z}.
 \label{aa-index-eq}
@@ -236,7 +236,7 @@ UA & \textbf{0.920} & NaN & 0.892 & 0.913 & 0.862 & 0.913 \\
 %
 \section{Method}
 %
-We begin by defining the test dataset to check the performance of the algorithm. We shuffle the set of existing edges and split it into $n$ parts $E'_i, \ i \in \{1, \ldots, n\}$. It is said that $n = 10$ achieves the best complexity-precision tradeoff. Now we can use the set $\bar{E_i} = E'_i \cup \bar{E}$ as test dataset, where if $e \in E'_i$ then $class_e = 1$ and if $e \in \bar{E}$ then $class_e = 0$.
+We begin by defining the test dataset to check the performance of the algorithm. We shuffle the set of existing edges and split it into $n$ parts $E'_i, \ i \in \{1, \ldots, n\}$. It is said that $n = 10$ achieves the best complexity-precision trade-off. Now we can use the set $\bar{E_i} = E'_i \cup \bar{E}$ as test dataset, where if $e \in E'_i$ then $class_e = 1$ and if $e \in \bar{E}$ then $class_e = 0$.
 
 Now we need to construct a training dataset to train our classifier on it and then check its performance on the test dataset. We take the remaining set of edges $E_i$, shuffle it and split it into $n$ parts $(E'_i)'_j$. To achieve balanced training dataset with the same amount of edges with class 0 and 1 we split the complement $\bar{E_i}$ into subsets of the same size as $(E'_i)'_j$. Now for each subset $(E'_i)'_j$ we take this subset out of $E_i$, then calculate indices on the complement of the remaining set and mark classes as $class_e$, where if $e \in (E'_i)'_j$ then $class_e = 1$ and if $e \in \bar{E}_i$ then $class_e = 0$. And to get balanced dataset, on each step we take edges from only one subset of $\bar{E_i}$ as examples of class 0.
 
