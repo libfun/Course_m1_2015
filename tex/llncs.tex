@@ -53,25 +53,25 @@ The aim of this paper is to try to devise an approach to predict the missing lin
 %
 \section{Similarity Indices}
 %
-In this section, we will describe most popular local and global similarity indices and measure their accuracy in ranking links according to the probability that said links were removed from the network.
+In this section, we will describe most popular (as presented in \cite{survey}) local and global similarity indices and measure their accuracy in ranking links according to the probability that said links were removed from the network.
 
 We'll start with describing the method for measuring said accuracy. We start with the set of edges $E$ of existing graph $G$. Then we shuffle it and split it into $n$ parts $E'_i, \ i \in \{1, \ldots, n\}$. Then for each step we subtract $E'_i$ from $E$ and look at the complement of the remaining set of edges $\bar{E_i}$ to the set of edges of complete graph on these nodes, so that $E^* = E \cup \bar{E} = E_i \cup E'_i \cup \bar{E} = E_i \cup \bar{E_i}$, where $E^*$ is the set of edges of complete graph and $\bar{E}$ is complement of graph $G$.
 
-The main tool for measuring the accuracy of ranking is AUC score, which can be described as the probability that for pair of edges $(e_a, e_b) \ e_a \in E'_i, \ e_b \in \bar{E}$, the ranking is such that $score(e_a) > score(e_b)$ plus $0.5$ times the probability that $score(e_a) = score(e_b)$. Or as formula -- $AUC = \frac{n' + 0.5 n''}{n}$, where $n$ is number of pairs $(e_a, e_b) \ e_a \in E'_i, \ e_b \in \bar{E}$, $n'$ is number of pairs such that $score(e_a) > score(e_b)$ and $n''$ is number of pairs such that $score(e_a) = score(e_b)$.
+The main tool for measuring the accuracy of ranking is AUC \cite{auc} score, which can be described as the probability that for pair of edges $(e_a, e_b) \ e_a \in E'_i, \ e_b \in \bar{E}$, the ranking is such that $score(e_a) > score(e_b)$ plus $0.5$ times the probability that $score(e_a) = score(e_b)$. Or as formula -- $AUC = \frac{n' + 0.5 n''}{n}$, where $n$ is the number of pairs $(e_a, e_b) \ e_a \in E'_i, \ e_b \in \bar{E}$, $n'$ is the number of pairs such that $score(e_a) > score(e_b)$ and $n''$ is the number of pairs such that $score(e_a) = score(e_b)$.
 
 We'll first describe all indices used for the prediction of links and then compare their AUC scores on different networks.
 %
 \subsection{Local Similarity Indices}
 %
-\subsubsection{Common neighbours (CN)}
+\paragraph{Common Neighbours (CN)}
 %
 This is the most obvious approach to the idea of capturing the similarity of two nodes in the network. As such, number of indices described below will use this measure with different weights. So if we denote $\Gamma(x)$ the number of neighbours of node $x$ in the graph, the formula looks like
 \begin{equation}
 s_{xy}^{CN} = |\Gamma(x) \cap \Gamma(y)|,
 \end{equation}
-where $s_{xy}$ is the index.
+where $s_{xy}$ is the index. For symmetric graphs it is also obvious that $s_{xy} = (A^2)_{xy}$, where $A$ is adjacency matrix of said graph.
 %
-\subsubsection{Salton Index (SaI)}
+\paragraph{Salton Index (SaI) \cite{salton-index}}
 %
 This index is also called cosine similarity and is defined as
 \begin{equation}
@@ -79,87 +79,95 @@ s_{xy}^{Salton} = \frac{|\Gamma(x) \cap \Gamma(y)|}{\sqrt{k_x \times k_x}},
 \end{equation}
 where $k_x$ is the degree of node $x$.
 %
-\subsubsection{Jaccard Index (JI)}
+\paragraph{Jaccard Index (JI) \cite{jaccard-index}}
 %
+This index was proposed by Jaccard and measures the number of common neighbours weighted by the size of the union of the sets of neighbours:
 \begin{equation}
 s_{xy}^{Jaccard} = \frac{|\Gamma(x) \cap \Gamma(y)|}{|\Gamma(x) \cup \Gamma(y)|}.
 \end{equation}
 %
-\subsubsection{S{\o}rensen Index (SoI)}
+\paragraph{S{\o}rensen Index (SoI) \cite{sorensen-index}}
 %
 \begin{equation}
 s_{xy}^{S{\o}rensen} = \frac{2|\Gamma(x) \cap \Gamma(y)|}{k_x + k_y}.
 \end{equation}
 %
-\subsubsection{Hub Promoted Index (HPI)}
+\paragraph{Hub Promoted Index (HPI) \cite{hub-index}}
 %
+This index gives higher scores to edges adjacent to hubs since it is weighted by the minimum of node degrees:
 \begin{equation}
 s_{xy}^{HPI} = \frac{|\Gamma(x) \cap \Gamma(y)|}{min\{k_x, k_y\}}.
 \end{equation}
 %
-\subsubsection{Hub Depressed Index (HDI)}
+\paragraph{Hub Depressed Index (HDI)}
 %
+This index penalises scores for the edges adjacent to hubs:
 \begin{equation}
 s_{xy}^{HDI} = \frac{|\Gamma(x) \cap \Gamma(y)|}{max\{k_x, k_y\}}.
 \end{equation}
 %
-\subsubsection{Leicht–Holme–Newman Index (LHN1)}
+\paragraph{Leicht–Holme–Newman Index (LHN1) \cite{lhn1-index}}
 %
+This index promotes edges adjacent to the nodes with lower degrees:
 \begin{equation}
 s_{xy}^{LHN1} = \frac{|\Gamma(x) \cap \Gamma(y)|}{k_x \times k_y}.
 \end{equation}
 %
-\subsubsection{Preferential Attachment Index (PAI)}
+\paragraph{Preferential Attachment Index (PAI)}
 %
+This index is derived from preferential attachment model of network growth \cite{netw-growth}. It promotes edges adjacent to the nodes of higher degrees:
 \begin{equation}
 s_{xy}^{PA} = k_x \times k_y.
 \end{equation}
 %
-\subsubsection{Adamic–Adar Index (AAI)}
+\paragraph{Adamic–Adar Index (AAI) \cite{aa-index}}
 %
+This index is a modified version of counting the amount of common nighbours as it values neighbours with lower degree higher:
 \begin{equation}
 s_{xy}^{AA} = \sum_{z \in \Gamma(x) \cap \Gamma(y)} \frac{1}{log k_z}.
+\label{aa-index-eq}
 \end{equation}
 %
-\subsubsection{Resource Allocation Index (RAI)}
+\paragraph{Resource Allocation Index (RAI) \cite{rai-index}}
 %
+This index is similar to the (\ref{aa-index-eq}) and is derived from the model of resouce allocation in the networks, assuming that node's ability to trasfer something is inversely proportional to it's degree:
 \begin{equation}
 s_{xy}^{RA} = \sum_{z \in \Gamma(x) \cap \Gamma(y)} \frac{1}{k_z}.
 \end{equation}
 %
 \subsection{Global Similarity Indices}
 %
-\subsubsection{Katz Index (KI)}
+\paragraph{Katz Index (KI) \cite{katz-index}}
 %
 \begin{equation}
 S^{Katz} = (I - \beta A)^{-1} - I.
 \end{equation}
 %
-\subsubsection{Leicht–Holme–Newman Index (LHN2)}
+\paragraph{Leicht–Holme–Newman Index (LHN2) \cite{lhn1-index}}
 %
 \begin{equation}
 S^{LHN2} = 2 m \lambda_1 D^{-1} (I - \frac{\phi A}{\lambda_1})^{-1} D^{-1}.
 \end{equation}
 %
-\subsubsection{Average Commute Time (ACT)}
+\paragraph{Average Commute Time (ACT)}
 %
 \begin{equation}
 S_{xy}^{ACT} = \frac{1}{l_{xx}^{+} + l_{yy}^{+} - 2l_{xy}^{+}}.
 \end{equation}
 %
-\subsubsection{Cosine based on $L^+$ (CBL)}
+\paragraph{Cosine based on $L^+$ (CBL)}
 %
 \begin{equation}
 s_{xy}^{cos^{+}} = cos(x, y)^{+} = \frac{v_x^T v_y}{|v_x| \cdot |v_y|} = \frac{l_{xy}^{+}}{\sqrt{l_{xx}^{+}\cdot l_{yy}^{+}}}.
 \end{equation}
 %
-\subsubsection{Random Walk with Restart (RWR)}
+\paragraph{Random Walk with Restart (RWR)}
 %
 \begin{equation}
 s_{xy}^{RWR} = q_{xy} + q_{yx}.
 \end{equation}
 %
-\subsubsection{Matrix Forest Index (MFI)}
+\paragraph{Matrix Forest Index (MFI) \cite{mf-index}}
 %
 \begin{equation}
 S = (I + L)^{-1}.
@@ -623,6 +631,66 @@ Proposed approach of supervised learning for link prediction showed interesting 
 %On subharmonic solutions of a Hamiltonian system.
 %Comm. Pure Appl. Math. 33, 609--633 (1980) 
 
+\bibitem {survey}
+L{\"u}, L., Zhou, T.:
+Link prediction in complex networks: A survey.
+Physica A 390, 1150–-1170 (2011)
+
+\bibitem {auc}
+Hanely, J. A., McNeil, B. J.:
+The meaning and use of the area under a receiver operating characteristic (ROC) curve.
+Radiology 143, 29 (1982)
+
+\bibitem {salton-index}
+Salton, G., McGill, M. J.:
+Introduction to Modern Information Retrieval.
+McGraw-Hill, Auckland (1983)
+
+\bibitem {jaccard-index}
+Jaccard, P.:
+{\'E}tude comparative de la distribution florale dans une portion des Alpes et des Jura.
+Bull. Soc. Vaud. Sci. Nat. 37, 547 (1901)
+
+\bibitem {sorensen-index}
+S{\o}rensen, T.: 
+A method of establishing groups of equal amplitude in plant sociology based on similarity of species content and its application to analyses of the vegetation on Danish commons.
+Biol. Skr. 5, 1 (1948)
+
+\bibitem {hub-index}
+Ravasz, E., Somera, A. L., Mongru, D. A., Oltvai, Z. N., Barab{\'a}si, A.-L.:
+Hierarchical organization of modularity in metabolic networks. 
+Science 297, 1551 (2002)
+
+\bibitem {lhn1-index}
+Leicht, E. A., Holme, P., Newman, M. E. J.:
+Vertex similarity in networks.
+Phys. Rev. E 73, 026120 (2006)
+
+\bibitem {netw-growth}
+Barab{\'a}si, A.-L., Albert, R.:
+Emergence of scaling in random networks.
+Science 286, 509 (1999)
+
+\bibitem {aa-index}
+Adamic, L. A., Adar, E.:
+Friends and neighbors on the web.
+Soc. Networks 25, 211 (2003)
+
+\bibitem {rai-index}
+Zhou, T., L{\"u}, L., Zhang, Y.-C.:
+Predicting missing links via local information.
+Eur. Phys. J. B 71, 623 (2009)
+
+\bibitem {katz-index}
+Katz, L.:
+A new status index derived from sociometric analysis.
+Psychmetrika 18, 39 (1953)
+
+\bibitem {mf-index}
+Chebotarev, P., Shamis, E. V.:
+The matrix-forest theorem and measuring relations in small social groups.
+Autom. Remote Control 58, 1505 (1997)
+
 \bibitem {features-for-sl}
 Cukierski, W., Hamner, B., Yang, B.:
 Graph-based Features for Supervised Link Prediction.
@@ -630,27 +698,27 @@ Proceedings of International Joint Conference on Neural Networks, San Jose, Cali
 
 \bibitem {adjnoun-net}
 Newman, M. E. J.
-Phys. Rev. E 74, 036104 (2006). 
+Phys. Rev. E 74, 036104 (2006)
 Available at: \texttt{http://www-personal.umich.edu/\~{}mejn/netdata/}.
 
 \bibitem {celneur-net}
 Watts, D. J., Strogatz, S. H.
-Nature 393, 440--442 (1998). 
+Nature 393, 440--442 (1998) 
 Available at: \texttt{http://www-personal.umich.edu/\~{}mejn/netdata/}.
 
 \bibitem {dolph-net}
 Lusseau, D., Schneider, K., Boisseau, O. J., Haase, P., Slooten, E., Dawson, S. M.
-Behavioral Ecology and Sociobiology 54, 396--405 (2003). 
+Behavioral Ecology and Sociobiology 54, 396--405 (2003)
 Available at: \texttt{http://www-personal.umich.edu/\~{}mejn/netdata/}.
 
 \bibitem {foot-net}
 Girvan, M., Newman, M. E. J.
-Proc. Natl. Acad. Sci. USA 99, 7821--7826 (2002). 
+Proc. Natl. Acad. Sci. USA 99, 7821--7826 (2002)
 Available at: \texttt{http://www-personal.umich.edu/\~{}mejn/netdata/}.
 
 \bibitem {lesmis-net}
 Knuth, D. E.
-The Stanford GraphBase: A Platform for Combinatorial Computing, Addison-Wesley, Reading, MA (1993).
+The Stanford GraphBase: A Platform for Combinatorial Computing, Addison-Wesley, Reading, MA (1993)
 Available at: \texttt{http://www-personal.umich.edu/\~{}mejn/netdata/}.
 
 \bibitem {polbook-net}
@@ -661,7 +729,7 @@ Available at: \texttt{http://www-personal.umich.edu/\~{}mejn/netdata/}.
 \bibitem {karate-net}
 Zachary, W. W.:
 An information flow model for conflict and fission in small groups.
-Journal of Anthropological Research 33, 452--473 (1977). 
+Journal of Anthropological Research 33, 452--473 (1977)
 Available at: \texttt{http://www-personal.umich.edu/\~{}mejn/netdata/}.
 
 \bibitem {usair-net}
