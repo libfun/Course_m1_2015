@@ -65,7 +65,7 @@ We'll first describe all indices used for the prediction of links and then compa
 %
 \subsubsection{Common neighbours (CN)}
 %
-This is the easiest and most obvious approach to the idea of capturing the similarity of two nodes in the network. As such, a number of indices described below will use this measure with different weights. So if we denote $\Gamma(x)$ the number of neighbours of node $x$ in the graph, the formula looks like
+This is the most obvious approach to the idea of capturing the similarity of two nodes in the network. As such, number of indices described below will use this measure with different weights. So if we denote $\Gamma(x)$ the number of neighbours of node $x$ in the graph, the formula looks like
 \begin{equation}
 s_{xy}^{CN} = |\Gamma(x) \cap \Gamma(y)|,
 \end{equation}
@@ -169,7 +169,7 @@ S = (I + L)^{-1}.
 \renewcommand{\arraystretch}{1.5}
 \begin{table}
 \begin{center}
-\caption{AUCs of local indices. AN - Word adjacencies network\cite{adjnoun-net}, CN - Neural network\cite{celneur-net}, Dp - Dolphin social network network\cite{dolph-net}, FB - American College football network\cite{foot-net}, LM - Les Miserables network\cite{lesmis-net}, PB - Books about US politics network\cite{polbook-net}, KC - Zachary's karate club network\cite{karate-net}, UA - US air transportation system network\cite{usair-net}. Best results for given network in bold.}
+\caption{AUC scores of local indices. AN - Word adjacencies network\cite{adjnoun-net}, CN - Neural network\cite{celneur-net}, Dp - Dolphin social network network\cite{dolph-net}, FB - American College football network\cite{foot-net}, LM - Les Miserables network\cite{lesmis-net}, PB - Books about US politics network\cite{polbook-net}, KC - Zachary's karate club network\cite{karate-net}, UA - US air transportation system network\cite{usair-net}. Best results for given network in bold.}
 \begin{tabular}{| l | l | l | l | l | l | l | l | l | l | l |}
 \hline
 Net & CN & SaI & JI & SoI & HPI & HDI & LHN1 & PAI & AAI & RAI \\ \hline
@@ -190,7 +190,7 @@ UA & 0.934 & 0.908 & 0.897 & 0.897 & 0.869 & 0.891 & 0.767 & 0.885 & 0.945 & \te
 \renewcommand{\arraystretch}{1.5}
 \begin{table}
 \begin{center}
-\caption{AUCs of global indices.}
+\caption{AUC scores of global indices.}
 \begin{tabular}{| l | l | l | l | l | l | l |}
 \hline
 Net & KI & LHN2 & ACT & CBL & RWR & MFI \\ \hline
@@ -213,7 +213,7 @@ We begin by defining the test dataset to check the performance of the algorithm.
 
 Now we need to construct training dataset to train our classifier on it and then check its performance on the test dataset. We take the remaining set of edges $E_i$, shuffle it and split it into $n$ parts $(E'_i)'_j$. To achieve balanced training dataset with the same amount of edges with class 0 and 1 we split the complement $\bar{E_i}$ into subsets of the same size as $(E'_i)'_j$. Now for each subset $(E'_i)'_j$ we take this subset out of $E_i$, then calculate indices on the complement of the remaining set and mark classes as $class_e$, where if $e \in (E'_i)'_j$ then $class_e = 1$ and if $e \in \bar{E}_i$ then $class_e = 0$. And to get balanced dataset, on each step we take edges from only one subset of $\bar{E_i}$ as examples of class 0.
 
-After $n$ steps of the above process we get the trainig dataset of size $2 |E_i|$. Now we can train our classifier on this dataset and then test its performance on the test dataset. After testing SVM, decision trees, k nearest neighbours, random forests, LDA and QDA it was observed that the best performance is achieved with classification using random forests ().
+After $n$ steps of the above process we get the trainig dataset of size $2 |E_i|$. Now we can train our classifier on this dataset and then test its performance on the test dataset. After testing SVM with linear kernel, decision trees, k nearest neighbours and random forests it was observed that the best performance is achieved with classification using random forests (as suggested in \cite{features-for-sl} and also tested in \cite{ipynb-sl}).
 %
 \section{Results}
 %
@@ -623,29 +623,54 @@ Proposed approach of supervised learning for link prediction showed interesting 
 %On subharmonic solutions of a Hamiltonian system.
 %Comm. Pure Appl. Math. 33, 609--633 (1980) 
 
+\bibitem {features-for-sl}
+Cukierski, W., Hamner, B., Yang, B.:
+Graph-based Features for Supervised Link Prediction.
+Proceedings of International Joint Conference on Neural Networks, San Jose, California, USA (2011)
+
 \bibitem {adjnoun-net}
-M. E. J. Newman, Phys. Rev. E 74, 036104 (2006). Available at: \texttt{http://www-personal.umich.edu/\~{}mejn/netdata/}.
+Newman, M. E. J.
+Phys. Rev. E 74, 036104 (2006). 
+Available at: \texttt{http://www-personal.umich.edu/\~{}mejn/netdata/}.
 
 \bibitem {celneur-net}
-D. J. Watts and S. H. Strogatz, Nature 393, 440-442 (1998). Available at: \texttt{http://www-personal.umich.edu/\~{}mejn/netdata/}.
+Watts, D. J., Strogatz, S. H.
+Nature 393, 440--442 (1998). 
+Available at: \texttt{http://www-personal.umich.edu/\~{}mejn/netdata/}.
 
 \bibitem {dolph-net}
-D. Lusseau, K. Schneider, O. J. Boisseau, P. Haase, E. Slooten, and S. M. Dawson, Behavioral Ecology and Sociobiology 54, 396-405 (2003). Available at: \texttt{http://www-personal.umich.edu/\~{}mejn/netdata/}.
+Lusseau, D., Schneider, K., Boisseau, O. J., Haase, P., Slooten, E., Dawson, S. M.
+Behavioral Ecology and Sociobiology 54, 396--405 (2003). 
+Available at: \texttt{http://www-personal.umich.edu/\~{}mejn/netdata/}.
 
 \bibitem {foot-net}
-M. Girvan and M. E. J. Newman, Proc. Natl. Acad. Sci. USA 99, 7821-7826 (2002). Available at: \texttt{http://www-personal.umich.edu/\~{}mejn/netdata/}.
+Girvan, M., Newman, M. E. J.
+Proc. Natl. Acad. Sci. USA 99, 7821--7826 (2002). 
+Available at: \texttt{http://www-personal.umich.edu/\~{}mejn/netdata/}.
 
 \bibitem {lesmis-net}
-D. E. Knuth, The Stanford GraphBase: A Platform for Combinatorial Computing, Addison-Wesley, Reading, MA (1993). Available at: \texttt{http://www-personal.umich.edu/\~{}mejn/netdata/}.
+Knuth, D. E.
+The Stanford GraphBase: A Platform for Combinatorial Computing, Addison-Wesley, Reading, MA (1993).
+Available at: \texttt{http://www-personal.umich.edu/\~{}mejn/netdata/}.
 
 \bibitem {polbook-net}
-V. Krebs, Datasets. Available at: \texttt{http://www-personal.umich.edu/\~{}mejn/netdata/}.
+Krebs, V.
+Datasets. 
+Available at: \texttt{http://www-personal.umich.edu/\~{}mejn/netdata/}.
 
 \bibitem {karate-net}
-W. W. Zachary, An information flow model for conflict and fission in small groups, Journal of Anthropological Research 33, 452-473 (1977). Available at: \texttt{http://www-personal.umich.edu/\~{}mejn/netdata/}.
+Zachary, W. W.:
+An information flow model for conflict and fission in small groups.
+Journal of Anthropological Research 33, 452--473 (1977). 
+Available at: \texttt{http://www-personal.umich.edu/\~{}mejn/netdata/}.
 
 \bibitem {usair-net}
-V. Batageli, A. Mrvar, Pajek datasets. Available at: \texttt{http://vlado.fmf.uni-lj.si/pub/networks/data/default.htm}.
+Batageli, V., Mrvar, A.
+Pajek datasets. 
+Available at: \texttt{http://vlado.fmf.uni-lj.si/pub/networks/data/default.htm}.
+
+\bibitem {ipynb-sl}
+\texttt{http://github.com/libfun/...}
 
 \end{thebibliography}
 
