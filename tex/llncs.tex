@@ -44,8 +44,8 @@
 %There will be two blank lines before and after the Abstract. \dots
 The problem of link prediction gathered a lot of attention in the last few years,
 arising in different applications ranging from recommendation systems to social networks.
-In this paper we will describe most popular similarity indices, compare their
-performance in their ability to show links with highest probability
+In this paper, we will describe most popular similarity indices, compare their
+performance in their ability to show links with the highest probability
 of being removed from initial network and describe the approach
 that allows to use them to predict missing links using supervised machine learning. 
 We will show the accuracy of prediction of this method on examples of real networks.
@@ -56,15 +56,15 @@ We will show the accuracy of prediction of this method on examples of real netwo
 %
 Over the last few years the topic of link prediction has become very popular due to the rise of recommendation systems and social networks. The ...
 
-The aim of this paper is to try to devise an approach to predict the missing links in the network using only structural information of said network. And also test for underlying properties of the index space of the links of network.
+The aim of this paper is to try to devise an approach to predict the missing links in the network using only structural information of said network. And also test for underlying properties of the index space of the links of the network.
 %
 \section{Similarity Indices}
 %
 In this section, we will describe most popular (as presented in \cite{survey}) local and global similarity indices and measure their accuracy in ranking links according to the probability that said links were removed from the network.
 
-We'll start with describing the method for measuring said accuracy. We start with the set of edges $E$ of existing graph $G$. Then we shuffle it and split it into $n$ parts $E'_i, \ i \in \{1, \ldots, n\}$. Then for each step we subtract $E'_i$ from $E$ and look at the complement of the remaining set of edges $\bar{E_i}$ to the set of edges of complete graph on these nodes, so that $E^* = E \cup \bar{E} = E_i \cup E'_i \cup \bar{E} = E_i \cup \bar{E_i}$, where $E^*$ is the set of edges of complete graph and $\bar{E}$ is complement of graph $G$.
+We'll start with describing the method for measuring said accuracy. We start with the set of edges $E$ of existing graph $G$. Then we shuffle it and split it into $n$ parts $E'_i, \ i \in \{1, \ldots, n\}$. Then for each step we subtract $E'_i$ from $E$ and look at the complement of the remaining set of edges $\bar{E_i}$ to the set of edges of the complete graph on these nodes, so that $E^* = E \cup \bar{E} = E_i \cup E'_i \cup \bar{E} = E_i \cup \bar{E_i}$, where $E^*$ is the set of edges of the complete graph and $\bar{E}$ is complement of graph $G$.
 
-The main tool for measuring the accuracy of ranking is AUC \cite{auc} score, which can be described as the probability that for pair of edges $(e_a, e_b) \ e_a \in E'_i, \ e_b \in \bar{E}$, the ranking is such that $score(e_a) > score(e_b)$ plus $0.5$ times the probability that $score(e_a) = score(e_b)$. Or as formula -- $AUC = \frac{n' + 0.5 n''}{n}$, where $n$ is the number of pairs $(e_a, e_b) \ e_a \in E'_i, \ e_b \in \bar{E}$, $n'$ is the number of pairs such that $score(e_a) > score(e_b)$ and $n''$ is the number of pairs such that $score(e_a) = score(e_b)$.
+The main tool for measuring the accuracy of the ranking is AUC \cite{auc} score, which can be described as the probability that for a pair of edges $(e_a, e_b) \ e_a \in E'_i, \ e_b \in \bar{E}$, the ranking is such that $score(e_a) > score(e_b)$ plus $0.5$ times the probability that $score(e_a) = score(e_b)$. Or as a formula -- $AUC = \frac{n' + 0.5 n''}{n}$, where $n$ is the number of pairs $(e_a, e_b) \ e_a \in E'_i, \ e_b \in \bar{E}$, $n'$ is the number of pairs such that $score(e_a) > score(e_b)$ and $n''$ is the number of pairs such that $score(e_a) = score(e_b)$.
 
 We'll first describe all indices used for the prediction of links and then compare their AUC scores on different networks.
 %
@@ -72,11 +72,11 @@ We'll first describe all indices used for the prediction of links and then compa
 %
 \paragraph{Common Neighbours (CN)}
 %
-This is the most obvious approach to the idea of capturing the similarity of two nodes in the network. As such, number of indices described below will use this measure with different weights. So if we denote $\Gamma(x)$ the number of neighbours of node $x$ in the graph, the formula looks like
+This is the most obvious approach to the idea of capturing the similarity of two nodes in the network. As such, the number of indices described below will use this measure with different weights. So if we denote $\Gamma(x)$ the number of neighbours of node $x$ in the graph, the formula looks like
 \begin{equation}
 s_{xy}^{CN} = |\Gamma(x) \cap \Gamma(y)|,
 \end{equation}
-where $s_{xy}$ is the index. For symmetric graphs it is also obvious that $s_{xy} = (A^2)_{xy}$, where $A$ is adjacency matrix of said graph.
+where $s_{xy}$ is the index. For symmetric graphs it is also obvious that $s_{xy} = (A^2)_{xy}$, where $A$ is the adjacency matrix of said graph.
 %
 \paragraph{Salton Index (SaI) \cite{salton-index}}
 %
@@ -122,14 +122,14 @@ s_{xy}^{LHN1} = \frac{|\Gamma(x) \cap \Gamma(y)|}{k_x \times k_y}.
 %
 \paragraph{Preferential Attachment Index (PAI)}
 %
-This index is derived from preferential attachment model of network growth \cite{netw-growth}. It promotes edges adjacent to the nodes of higher degrees:
+This index is derived from the preferential attachment model of network growth \cite{netw-growth}. It promotes edges adjacent to the nodes of higher degrees:
 \begin{equation}
 s_{xy}^{PA} = k_x \times k_y.
 \end{equation}
 %
 \paragraph{Adamic–Adar Index (AAI) \cite{aa-index}}
 %
-This index is a modified version of counting the amount of common nighbours as it values neighbours with lower degree higher:
+This index is a modified version of counting the amount of common neghbours as it values neighbours with lower degree higher:
 \begin{equation}
 s_{xy}^{AA} = \sum_{z \in \Gamma(x) \cap \Gamma(y)} \frac{1}{log k_z}.
 \label{aa-index-eq}
@@ -137,7 +137,7 @@ s_{xy}^{AA} = \sum_{z \in \Gamma(x) \cap \Gamma(y)} \frac{1}{log k_z}.
 %
 \paragraph{Resource Allocation Index (RAI) \cite{rai-index}}
 %
-This index is similar to the (\ref{aa-index-eq}) and is derived from the model of resouce allocation in the networks, assuming that node's ability to trasfer something is inversely proportional to it's degree:
+This index is similar to the (\ref{aa-index-eq}) and is derived from the model of resource allocation in the networks, assuming that node's ability to transfer something is inversely proportional to its degree:
 \begin{equation}
 s_{xy}^{RA} = \sum_{z \in \Gamma(x) \cap \Gamma(y)} \frac{1}{k_z}.
 \end{equation}
@@ -146,7 +146,7 @@ s_{xy}^{RA} = \sum_{z \in \Gamma(x) \cap \Gamma(y)} \frac{1}{k_z}.
 %
 \paragraph{Katz Index (KI) \cite{katz-index}}
 %
-This index measures the number of paths of length $l$ weighted by $\beta^l$, where $\beta$ is the dampening factor. Since number of paths in symmetric graph can be expressed as the power of adjacency matrix, it can be expressed in the matrix form as:
+This index measures the number of paths of length $l$ weighted by $\beta^l$, where $\beta$ is the dampening factor. Since the number of paths in a symmetric graph can be expressed as the power of the adjacency matrix, it can be expressed in the matrix form as:
 \begin{equation}
 S^{Katz} = (I - \beta A)^{-1} - I,
 \end{equation}
@@ -158,11 +158,11 @@ This index is the modification of Katz index that takes into account that two no
 \begin{equation}
 S^{LHN2} = 2 m \lambda_1 D^{-1} (I - \frac{\phi A}{\lambda_1})^{-1} D^{-1},
 \end{equation}
-where $m$ is the number of edges in the network, $\lambda_1$ is the largest eigenvalue of adjacency matrix $A$, $D$ is diagonal degree matrix of form $diag\{k_1, \ldots, k_n\}$, $\phi : \ 0 < \phi < 1$ is a free parameter that assigns higher weights to shorter paths if it's closer to $0$ and to longer paths if it's closer to $1$.
+where $m$ is the number of edges in the network, $\lambda_1$ is the largest eigenvalue of adjacency matrix $A$, $D$ is a diagonal degree matrix of form $diag\{k_1, \ldots, k_n\}$, $\phi : \ 0 < \phi < 1$ is a free parameter that assigns higher weights to shorter paths if it's closer to $0$ and to longer paths if it's closer to $1$.
 %
 \paragraph{Average Commute Time (ACT)}
 %
-This index assignes higher scores to the pair of nodes for which the average length of random walk from one node to another is shorter. It can be expressed as:
+This index assigns higher scores to the pair of nodes for which the average length of the random walk from one node to another is shorter. It can be expressed as:
 \begin{equation}
 s_{xy}^{ACT} = \frac{1}{l_{xx}^{+} + l_{yy}^{+} - 2l_{xy}^{+}},
 \end{equation}
@@ -170,18 +170,18 @@ where $l_{ij}^{+}$ is the $(i, j)$ entry of pseudoinverse of the Laplacian matri
 %
 \paragraph{Cosine based on $L^+$ (CBL)}
 %
-This index is defined as cosine of two node vectors:
+This index is defined as the cosine of two node vectors:
 \begin{equation}
 s_{xy}^{cos^{+}} = cos(x, y)^{+} = \frac{v_x^T v_y}{|v_x| \cdot |v_y|} = \frac{l_{xy}^{+}}{\sqrt{l_{xx}^{+}\cdot l_{yy}^{+}}}.
 \end{equation}
 %
 \paragraph{Random Walk with Restart (RWR)}
 %
-This index is derived from PageRank algorithm and can be expressed as:
+This index is derived from the PageRank algorithm and can be expressed as:
 \begin{equation}
 s_{xy}^{RWR} = q_{xy} + q_{yx},
 \end{equation}
-where $q_{xy}$ is the $y$th element of vector $\overrightarrow{q_x}$. $\overrightarrow{q_x} = (1 - c)(I - cP^{T})^{-1} \overrightarrow{e_x}$, where $c$ is probability in PageRank algorithm, $P$ is the transition matrix with $P_{xy} = \frac{1}{k_x}$ if $x$ and $y$ are connected and $0$ otherwise and $\overrightarrow{e_x}$ is the vector of form $(\delta_{ix})$, where $\delta_{ix}$ is the Kronecker function. 
+where $q_{xy}$ is the $y$th element of vector $\overrightarrow{q_x}$. $\overrightarrow{q_x} = (1 - c)(I - cP^{T})^{-1} \overrightarrow{e_x}$, where $c$ is probability in the PageRank algorithm, $P$ is the transition matrix with $P_{xy} = \frac{1}{k_x}$ if $x$ and $y$ are connected and $0$ otherwise and $\overrightarrow{e_x}$ is the vector of form $(\delta_{ix})$, where $\delta_{ix}$ is the Kronecker function. 
 %
 \paragraph{Matrix Forest Index (MFI) \cite{mf-index}}
 %
@@ -238,9 +238,9 @@ UA & \textbf{0.920} & NaN & 0.892 & 0.913 & 0.862 & 0.913 \\
 %
 We begin by defining the test dataset to check the performance of the algorithm. We shuffle the set of existing edges and split it into $n$ parts $E'_i, \ i \in \{1, \ldots, n\}$. It is said that $n = 10$ achieves the best complexity-precision tradeoff. Now we can use the set $\bar{E_i} = E'_i \cup \bar{E}$ as test dataset, where if $e \in E'_i$ then $class_e = 1$ and if $e \in \bar{E}$ then $class_e = 0$.
 
-Now we need to construct training dataset to train our classifier on it and then check its performance on the test dataset. We take the remaining set of edges $E_i$, shuffle it and split it into $n$ parts $(E'_i)'_j$. To achieve balanced training dataset with the same amount of edges with class 0 and 1 we split the complement $\bar{E_i}$ into subsets of the same size as $(E'_i)'_j$. Now for each subset $(E'_i)'_j$ we take this subset out of $E_i$, then calculate indices on the complement of the remaining set and mark classes as $class_e$, where if $e \in (E'_i)'_j$ then $class_e = 1$ and if $e \in \bar{E}_i$ then $class_e = 0$. And to get balanced dataset, on each step we take edges from only one subset of $\bar{E_i}$ as examples of class 0.
+Now we need to construct a training dataset to train our classifier on it and then check its performance on the test dataset. We take the remaining set of edges $E_i$, shuffle it and split it into $n$ parts $(E'_i)'_j$. To achieve balanced training dataset with the same amount of edges with class 0 and 1 we split the complement $\bar{E_i}$ into subsets of the same size as $(E'_i)'_j$. Now for each subset $(E'_i)'_j$ we take this subset out of $E_i$, then calculate indices on the complement of the remaining set and mark classes as $class_e$, where if $e \in (E'_i)'_j$ then $class_e = 1$ and if $e \in \bar{E}_i$ then $class_e = 0$. And to get balanced dataset, on each step we take edges from only one subset of $\bar{E_i}$ as examples of class 0.
 
-After $n$ steps of the above process we get the trainig dataset of size $2 |E_i|$. Now we can train our classifier on this dataset and then test its performance on the test dataset. After testing SVM with linear kernel, decision trees, k nearest neighbours and random forests it was observed that the best performance is achieved with classification using random forests (as suggested in \cite{features-for-sl} and also tested in \cite{ipynb-sl}).
+After $n$ steps of the above process, we get the training dataset of size $2 |E_i|$. Now we can train our classifier on this dataset and then test its performance on the test dataset. After testing SVM with linear kernel, decision trees, k nearest neighbours and random forests it was observed that the best performance is achieved with classification using random forests (as suggested in \cite{features-for-sl} and also tested in \cite{ipynb-sl}).
 %
 \section{Results}
 %
@@ -269,7 +269,7 @@ UA & 0.083 $\pm$ 0.008 & 0.044 $\pm$ 0.004 & 0.901 $\pm$ 0.024 & 0.910 $\pm$ 0.0
 %
 \section{Conclusion}
 %
-Proposed approach of supervised learning for link prediction showed interesting results on the selected networks. It appears that the algoritm classifies most of the removed links correctly, but also classifies a lot of links that were not present in the network in the first place as the ones that were removed.
+The proposed approach of supervised learning for link prediction showed interesting results on the selected networks. It appears that the algorithm classifies most of the removed links correctly, but also classifies a lot of links that were not present in the network in the first place as the ones that were removed.
 
 These results also show that there is difference in index space between the edges removed and edges from complement that differentiates removed edges within the complement.
 %
