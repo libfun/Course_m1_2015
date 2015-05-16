@@ -15,7 +15,7 @@
 %
 \title{Supervised Learning for Link Prediction Using Similarity Indices}
 %
-\titlerunning{Supervised learning for link prediction}  % abbreviated title (for running head)
+\titlerunning{Supervised Learning for Link Prediction}  % abbreviated title (for running head)
 %                                     also used for the TOC unless
 %                                     \toctitle is used
 %
@@ -62,11 +62,11 @@ The aim of this paper is to try to devise an approach to predict the missing lin
 %
 In this section, we will describe most popular (as presented in \cite{survey}) local and global similarity indices and measure their accuracy in ranking links according to the probability that said links were removed from the network.
 
-We'll start with describing the method for measuring said accuracy. We start with the set of edges $E$ of existing graph $G$. Then we shuffle it and split it into $n$ parts $E'_i, \ i \in \{1, \ldots, n\}$. Then for each step we subtract $E'_i$ from $E$ and look at the complement of the remaining set of edges $\bar{E_i}$ to the set of edges of the complete graph on these nodes, so that $E^* = E \cup \bar{E} = E_i \cup E'_i \cup \bar{E} = E_i \cup \bar{E_i}$, where $E^*$ is the set of edges of the complete graph and $\bar{E}$ is complement of graph $G$.
+We'll start with describing the method for measuring said accuracy. We start with the set of links $E$ of existing graph $G$. Then we shuffle it and split it into $n$ parts $E_i, \ i \in \{1, \ldots, n\} : E = \cup_{i = 1}^{n} E_i, \ E_i \cap E_j = \emptyset, \ i \neq j$. Then for each step we subtract $E_i$ from $E : E'_i = E \backslash E_i$ and look at the complement of the remaining set of links $\overline{E'_i}$ to the set of links of the complete graph on these nodes, so that $E \cup \overline{E} = E'_i \cup E_i \cup \overline{E} = E'_i \cup \overline{E'_i}$, where $\overline{E}$ is complement of graph $G$.
 
-The main tool for measuring the accuracy of the ranking is AUC \cite{auc} score, which can be described as the probability that for a pair of edges $(e_a, e_b) \ e_a \in E'_i, \ e_b \in \bar{E}$, the ranking is such that $score(e_a) > score(e_b)$ plus $0.5$ times the probability that $score(e_a) = score(e_b)$. Or as a formula -- $AUC = \frac{n' + 0.5 n''}{n}$, where $n$ is the number of pairs $(e_a, e_b) \ e_a \in E'_i, \ e_b \in \bar{E}$, $n'$ is the number of pairs such that $score(e_a) > score(e_b)$ and $n''$ is the number of pairs such that $score(e_a) = score(e_b)$.
+The main tool for measuring the accuracy of the ranking is AUC \cite{auc} score, which can be described as the probability that for a pair of links $(e_a, e_b) \ e_a \in E_i, \ e_b \in \overline{E}$, the ranking is such that $score(e_a) > score(e_b)$ plus $0.5$ times the probability that $score(e_a) = score(e_b)$. Or as a formula -- $AUC = \frac{n' + 0.5 n''}{n}$, where $n$ is the number of pairs $(e_a, e_b) \ e_a \in E_i, \ e_b \in \overline{E}$, $n'$ is the number of pairs such that $score(e_a) > score(e_b)$ and $n''$ is the number of pairs such that $score(e_a) = score(e_b)$.
 
-For example, we have a graph on four nodes $\{a, b, c, d\}$ with edges $(a, c), (a, d), (b, d)$ and $(c, d)$. In order to calculate AUC score, we need to first remove some subset of existing edges, for example $\{(c, d)\}$, then calculate the indices of the complement of the remaining set of edges, so in this case its $\{(a, b), (b, c), (c, d)\}$ and then compare their indices. So if $score(a, b) = 1, score(b, c) = 2$ and $score(c, d) = 2$, then AUC is equal to $\frac{1 + 0.5 \cdot 1}{2} = 0.75$.
+For example, we have a graph on four nodes $\{a, b, c, d\}$ with links $(a, c), (a, d), (b, d)$ and $(c, d)$. In order to calculate AUC score, we need to first remove some subset of existing links, for example $\{(c, d)\}$, then calculate the indices of the complement of the remaining set of links, so in this case its $\{(a, b), (b, c), (c, d)\}$ and then compare their indices. So if $score(a, b) = 1, score(b, c) = 2$ and $score(c, d) = 2$, then AUC is equal to $\frac{1 + 0.5 \cdot 1}{2} = 0.75$.
 
 We'll first describe all indices used for the prediction of links and then compare their AUC scores on different networks.
 %
@@ -103,28 +103,28 @@ s_{xy}^{S{\o}rensen} = \frac{2|\Gamma(x) \cap \Gamma(y)|}{k_x + k_y}.
 %
 \paragraph{Hub Promoted Index (HPI) \cite{hub-index}}
 %
-This index gives higher scores to edges adjacent to hubs since it is weighted by the minimum of node degrees:
+This index gives higher scores to links adjacent to hubs since it is weighted by the minimum of node degrees:
 \begin{equation}
 s_{xy}^{HPI} = \frac{|\Gamma(x) \cap \Gamma(y)|}{min\{k_x, k_y\}}.
 \end{equation}
 %
 \paragraph{Hub Depressed Index (HDI)}
 %
-This index penalises scores for the edges adjacent to hubs:
+This index penalises scores for the links adjacent to hubs:
 \begin{equation}
 s_{xy}^{HDI} = \frac{|\Gamma(x) \cap \Gamma(y)|}{max\{k_x, k_y\}}.
 \end{equation}
 %
 \paragraph{Leicht–Holme–Newman Index (LHN1) \cite{lhn1-index}}
 %
-This index promotes edges adjacent to the nodes with lower degrees:
+This index promotes links adjacent to the nodes with lower degrees:
 \begin{equation}
 s_{xy}^{LHN1} = \frac{|\Gamma(x) \cap \Gamma(y)|}{k_x \times k_y}.
 \end{equation}
 %
 \paragraph{Preferential Attachment Index (PAI)}
 %
-This index is derived from the preferential attachment model of network growth \cite{netw-growth}. It promotes edges adjacent to the nodes of higher degrees:
+This index is derived from the preferential attachment model of network growth \cite{netw-growth}. It promotes links adjacent to the nodes of higher degrees:
 \begin{equation}
 s_{xy}^{PA} = k_x \times k_y.
 \end{equation}
@@ -160,7 +160,7 @@ This index is the modification of Katz index that takes into account that two no
 \begin{equation}
 S^{LHN2} = 2 m \lambda_1 D^{-1} (I - \frac{\phi A}{\lambda_1})^{-1} D^{-1},
 \end{equation}
-where $m$ is the number of edges in the network, $\lambda_1$ is the largest eigenvalue of adjacency matrix $A$, $D$ is a diagonal degree matrix of form $diag\{k_1, \ldots, k_n\}$, $\phi : \ 0 < \phi < 1$ is a free parameter that assigns higher weights to shorter paths if it's closer to $0$ and to longer paths if it's closer to $1$.
+where $m$ is the number of links in the network, $\lambda_1$ is the largest eigenvalue of adjacency matrix $A$, $D$ is a diagonal degree matrix of form $diag\{k_1, \ldots, k_n\}$, $\phi : \ 0 < \phi < 1$ is a free parameter that assigns higher weights to shorter paths if it's closer to $0$ and to longer paths if it's closer to $1$.
 %
 \paragraph{Average Commute Time (ACT)}
 %
@@ -238,15 +238,15 @@ UA & \textbf{0.920} & NaN & 0.892 & 0.913 & 0.862 & 0.913 \\
 %
 \section{Method}
 %
-We begin by defining the test dataset to check the performance of the algorithm. We shuffle the set of existing edges and split it into $n$ parts $E'_i, \ i \in \{1, \ldots, n\}$. It is said that $n = 10$ achieves the best complexity-precision trade-off. Now we can use the set $\bar{E_i} = E'_i \cup \bar{E}$ as test dataset, where if $e \in E'_i$ then $class_e = 1$ and if $e \in \bar{E}$ then $class_e = 0$.
+We begin by defining the test dataset to check the performance of the algorithm. We shuffle the set of existing links and split it into $n$ parts $E'_i, \ i \in \{1, \ldots, n\}$. It is said that $n = 10$ achieves the best complexity-precision trade-off. Now we can use the set $\overline{E'_i} = E_i \cup \overline{E}$ as test dataset, where if $e \in E_i$ then $class_e = 1$ and if $e \in \overline{E}$ then $class_e = 0$.
 
-Now we need to construct a training dataset to train our classifier on it and then check its performance on the test dataset. We take the remaining set of edges $E_i$, shuffle it and split it into $n$ parts $(E'_i)'_j$. To achieve balanced training dataset with the same amount of edges with class 0 and 1 we split the complement $\bar{E_i}$ into subsets of the same size as $(E'_i)'_j$. Now for each subset $(E'_i)'_j$ we take this subset out of $E_i$, then calculate indices on the complement of the remaining set and mark classes as $class_e$, where if $e \in (E'_i)'_j$ then $class_e = 1$ and if $e \in \bar{E}_i$ then $class_e = 0$. And to get balanced dataset, on each step we take edges from only one subset of $\bar{E_i}$ as examples of class 0.
+Now we need to construct a training dataset to train our classifier on it and then check its performance on the test dataset. We take the remaining set of links $E'_i$, shuffle it and split it into $n$ parts $E'_{ij} : E_i = \cup_{j = 1}^{n} E'_{ij}$. To achieve balanced training dataset with the same amount of links with class 0 and 1 we split the complement $\bar{E'_i}$ into subsets of the same size as $E'_{ij}$. Now for each subset $E'_{ij}$ we take this subset out of $E'_i$, then calculate indices on the complement of the remaining set $\overline{E'_i}$ using graph with edges $E'_i \backslash E'_{ij}$ and mark classes as $class_e$, where if $e \in E'_{ij}$ then $class_e = 1$ and if $e \in \overline{E'_i}$ then $class_e = 0$. And to get balanced dataset, on each step we take links from only one subset of $\overline{E'_i}$ of the same size as $E'_{ij}$ as examples of class 0.
 
-After $n$ steps of the above process, we get the training dataset of size $2 |E_i|$. Now we can train our classifier on this dataset and then test its performance on the test dataset. After testing SVM with linear kernel, decision trees, k nearest neighbours and random forests it was observed that the best performance is achieved with classification using random forests (as suggested in \cite{features-for-sl} and also tested in \cite{ipynb-sl}).
+After $n$ steps of the above process, we get the training dataset of size $2 |E'_i|$. Now we can train our classifier on this dataset and then test its performance on the test dataset. After testing SVM with linear kernel, decision trees, k nearest neighbours and random forests it was observed that the best performance is achieved with classification using random forests (as suggested in \cite{features-for-sl} and also tested in \cite{ipynb-sl}).
 %
 \section{Results}
 %
-We test the performance our method on proposed test datasets and measure its F1 score, precision, recall, AUC score and accuracy on the class $1$ of edges removed from the network. We then compile all these results and take the mean and standard deviation and compare these scores for different networks. (See \cite{ipynb-sl} for the code and results using Python's Scikit-learn \cite{scikit})
+We test the performance our method on proposed test datasets and measure its F1 score, precision, recall, AUC score and accuracy on the class $1$ of links removed from the network. We then compile all these results and take the mean and standard deviation and compare these scores for different networks. (See \cite{ipynb-sl} for the code and results using Python's Scikit-learn \cite{scikit})
 %
 \setlength{\tabcolsep}{5pt}
 \renewcommand{\arraystretch}{1.5}
@@ -273,7 +273,7 @@ UA & 0.083 $\pm$ 0.008 & 0.044 $\pm$ 0.004 & 0.901 $\pm$ 0.024 & 0.910 $\pm$ 0.0
 %
 The proposed approach of supervised learning for link prediction showed interesting results on the selected networks. It appears that the algorithm classifies most of the removed links correctly, but also classifies a lot of links that were not present in the network in the first place as the ones that were removed.
 
-These results also show that there is difference in index space between the edges removed and edges from complement that differentiates removed edges within the complement.
+These results also show that there is difference in index space between the links removed and links from complement that differentiates removed links within the complement.
 %
 %
 % ---- Bibliography ----
