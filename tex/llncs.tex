@@ -66,6 +66,8 @@ We'll start with describing the method for measuring said accuracy. We start wit
 
 The main tool for measuring the accuracy of the ranking is AUC \cite{auc} score, which can be described as the probability that for a pair of edges $(e_a, e_b) \ e_a \in E'_i, \ e_b \in \bar{E}$, the ranking is such that $score(e_a) > score(e_b)$ plus $0.5$ times the probability that $score(e_a) = score(e_b)$. Or as a formula -- $AUC = \frac{n' + 0.5 n''}{n}$, where $n$ is the number of pairs $(e_a, e_b) \ e_a \in E'_i, \ e_b \in \bar{E}$, $n'$ is the number of pairs such that $score(e_a) > score(e_b)$ and $n''$ is the number of pairs such that $score(e_a) = score(e_b)$.
 
+For example, we have a graph on four nodes $\{a, b, c, d\}$ with edges $(a, c), (a, d), (b, d)$ and $(c, d)$. In order to calculate AUC score, we need to first remove some subset of existing edges, for example $\{(c, d)\}$, then calculate the indices of the complement of the remaining set of edges, so in this case its $\{(a, b), (b, c), (c, d)\}$ and then compare their indices. So if $score(a, b) = 1, score(b, c) = 2$ and $score(c, d) = 2$, then AUC is equal to $\frac{1 + 0.5 \cdot 1}{2} = 0.75$.
+
 We'll first describe all indices used for the prediction of links and then compare their AUC scores on different networks.
 %
 \subsection{Local Similarity Indices}
