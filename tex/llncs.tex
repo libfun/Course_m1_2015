@@ -54,9 +54,13 @@ We will show the accuracy of prediction of this method on examples of real netwo
 %
 \section{Introduction}
 %
-Over the last few years the topic of link prediction has become very popular due to the rise of recommendation systems and social networks. The ...
+Over the last few years the topic of link prediction has become very popular as a great number of systems can be described using networks. The range of different applications of network analysis made it crucial to understand the underlying structural properties of said networks and motivated the expansion of the theory.
 
-The aim of this paper is to try to devise an approach to predict the missing links in the network using only structural information of said network. And also test for underlying properties of the index space of the links of the network.
+The link prediction problem arises as part of the most recommendation systems. Social networks also use link prediction to show user's potential friends to grow the network and provide better user experience. These commercial applications of link prediction also favour algorithms with greater computational efficiency as such networks tend to be huge.
+
+Other applications of link prediction include research as, for example, the ability to predict connections in food webs in biology can speed up the research by removing the necessity to explore all the connections experimentally.
+
+The aim of this paper is to describe an approach to predict the missing links in the network using only structural information of said network. And also test for underlying properties of the index space of the links of the network.
 %
 \section{Similarity Indices}
 %
@@ -192,7 +196,7 @@ This index can be described as the ratio of the number of spanning rooted forest
 S = (I + L)^{-1}.
 \end{equation}
 %
-We can now implement and compare AUC scores of all indices described above on different networks. (See \cite{ipynb-auc} for the code and results using Python's NetworkX \cite{networkx}, Pandas \cite{pandas} and NumPy \cite{numpy} in IPython Notebook \cite{ipython})
+We can now implement and compare AUC scores of all indices described above on different networks. (See \cite{ipynb-auc} for the code and results using Python's NetworkX \cite{networkx}, Pandas \cite{pandas} and NumPy \cite{numpy} in IPython Notebook \cite{ipython}).
 %
 \setlength{\tabcolsep}{5pt}
 \renewcommand{\arraystretch}{1.5}
@@ -246,7 +250,12 @@ After $n$ steps of the above process, we get the training dataset of size $2 |E'
 %
 \section{Results}
 %
-We test the performance our method on proposed test datasets and measure its F1 score, precision, recall, AUC score and accuracy on the class $1$ of links removed from the network. We then compile all these results and take the mean and standard deviation and compare these scores for different networks. (See \cite{ipynb-sl} for the code and results using Python's Scikit-learn \cite{scikit})
+We test the performance our method on proposed test datasets and measure its F1 score, precision, recall, AUC score and accuracy on the class $1$ of links removed from the network. We then compile all these results and take the mean and standard deviation and compare these scores for different networks. (See \cite{ipynb-sl} for the code and results using Python's Scikit-learn \cite{scikit}).
+
+The results are interesting as they show very low precision and F1 scores of class of removed links, but high recall, AUC and accuracy. It means that the classifier correctly marks most of removed links, but also classifies a lot of links that were not present in the network in the first place as the ones that were removed.
+
+These results also show that there is difference in index space between the links removed and links from complement that differentiates removed links within the complement and that difference is enough to separate most of the initially removed links from others. This difference can be easily explored on the train set using different cross validation techniques.
+
 %
 \setlength{\tabcolsep}{5pt}
 \renewcommand{\arraystretch}{1.5}
@@ -273,7 +282,9 @@ UA & 0.083 $\pm$ 0.008 & 0.044 $\pm$ 0.004 & 0.901 $\pm$ 0.024 & 0.910 $\pm$ 0.0
 %
 The proposed approach of supervised learning for link prediction showed interesting results on the selected networks. It appears that the algorithm classifies most of the removed links correctly, but also classifies a lot of links that were not present in the network in the first place as the ones that were removed.
 
-These results also show that there is difference in index space between the links removed and links from complement that differentiates removed links within the complement.
+Such kind of "optimistic" classifier can be useful in social network applications as most of the time it's easier to display lots of potential friends to user and let them decide whether or not the presented links are correct. But it can be useless in applications that require high precision and can settle down for lower recall.
+
+This approach also allows to build fast evolving network models and evaluate change in parameters of said network with growth.
 %
 %
 % ---- Bibliography ----
